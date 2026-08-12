@@ -229,7 +229,7 @@ function Navbar({ active, setActive }) {
           display: "flex", flexDirection: "column", gap: "1.25rem",
         }}>
 
-          if (NAV_LINKS.length === 0) return;
+          {/* if (NAV_LINKS.length === 0) return; */}
 
           {NAV_LINKS.map((link) => (
             <button
