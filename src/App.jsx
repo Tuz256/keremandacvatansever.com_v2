@@ -41,12 +41,21 @@ const PROJECTS = [
   },
   {
     id: 4,
-    title: "Yapılacaklar Listesi",
+    title: "Yapılacaklar Listesi [WEB]",
     description: "İşleri takip etmek için sürükle-bırak olarak çalışan bir site.",
     link: "https://github.com/Tuz256/web-to-do",
     tags: ["React", "CSS", "JavaScript", "Web"],
-    color: "#f0e4c8",
+    color: "#c8ba99",
     emoji: "📋",
+  },
+  {
+    id: 5,
+    title: "Endüstriyel Makine Takip Sistemi",
+    description: "İşleri takip etmek için sürükle-bırak olarak çalışan bir site.",
+    link: "https://github.com/Tuz256/Industrial-IoT-Monitoring-System",
+    tags: ["ESP32", "FreeRTOS", "MQTT", "JSON", "Wi-Fi", "C++", "Eclipse Mosquitto"],
+    color: "#8569b6",
+    emoji: "🎥",
   },
 ];
 
