@@ -14,8 +14,7 @@ The site will include these;
 
 ## 🎨 Front-end
 
-I like styling. But I hate html, css and java. Their structure is complicated and chaotic., css and java.
-So I'm using;
+I like styling. But I hate html, css and java. Their structure is complicated and chaotic.So I'm using;
 
 * React
 
