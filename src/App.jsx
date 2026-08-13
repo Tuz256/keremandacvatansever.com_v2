@@ -5,7 +5,7 @@ import cvPhoto from "./assets/cv.png";
 
 // layout imports
 import NavBar from './layouts/NavBar';
-import Hero from './layouts/NavBar';
+import Hero from './layouts/Hero';
 import About from './layouts/About';
 import Projects from './layouts/Projects';
 import Footer from "./layouts/Footer";
