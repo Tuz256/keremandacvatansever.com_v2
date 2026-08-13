@@ -1,4 +1,4 @@
-
+import theme from '../config/theme';
 
 export default function Hero(setActive) {
   const handleScroll = (id, label) => {
