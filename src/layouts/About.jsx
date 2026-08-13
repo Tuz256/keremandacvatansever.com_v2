@@ -80,8 +80,8 @@ export default function About() {
         </div>
         <div>
           <h2 style={{ fontFamily: theme.fonts.heading, fontSize: "clamp(2rem,4vw,2.75rem)", color: "#fff", margin: "1.5rem", lineHeight: 1.2 }}>
-            <span style={{ color: "#00cddb" }}>Doğa</span>'ya aşık,<br />
-            <span style={{ color: "#66db00" }}>kod</span> yazan,<br />
+            <span style={{ color: "#66db00" }}>Doğa</span>'ya aşık,<br />
+            <span style={{ color: "#00cddb" }}>kod</span> yazan,<br />
             <span style={{ color: theme.colors.brandColor }}>mühendis</span> biri.
           </h2>
           <p style={{
