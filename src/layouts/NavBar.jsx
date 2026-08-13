@@ -28,26 +28,46 @@ export default function Navbar({ active, setActive }) {
     });
   };
 
+  const handleLogoClick = (e) => {
+    if (window.location.pathname === "/" || window.location.pathname === "/index.html") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
       padding: "0 2rem",
       background: scrolled ? theme.colors.bgNavBar : "transparent",
       backdropFilter: scrolled ? "blur(12px)" : "none",
-      // borderBottom: "2px solid rgba(255,255,255,0.06)",
       transition: "all 0.35s ease",
       display: "flex", alignItems: "center", justifyContent: "space-between",
       height: "64px",
     }}>
-      <span style={{
+      {/* <a href="/" style={{
         fontFamily: theme.fonts.heading,
+        textDecoration: "none",
         fontSize: "1.25rem",
         fontWeight: 700,
         color: "#fff",
         letterSpacing: "0.02em",
       }}>
         KA<span style={{ color: theme.colors.brandColor }}>.</span>
-      </span>
+      </a> */}
+
+      <a href="/" onClick={handleLogoClick} style={{ textDecoration: "none" }}>
+        <span style={{
+          fontFamily: theme.fonts.heading,
+          fontSize: "1.25rem",
+          fontWeight: 700,
+          color: "#fff",
+          letterSpacing: "0.02em",
+          cursor: "pointer",
+        }}>
+          KA<span style={{ color: theme.colors.brandColor }}>.</span>
+        </span>
+      </a>
 
       {/* Desktop */}
       <div style={{ display: "flex", gap: "2rem" }} className="desktop-nav">
@@ -92,8 +112,6 @@ export default function Navbar({ active, setActive }) {
           background: "#0a0a0ef7", padding: "1.5rem",
           display: "flex", flexDirection: "column", gap: "1.25rem",
         }}>
-
-          {/* if (NAV_LINKS.length === 0) return; */}
 
           {NAV_LINKS.map((link) => (
             <button
