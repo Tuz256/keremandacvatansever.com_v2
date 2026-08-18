@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-import PROJECTS from '../config/projects';
+import PROJECTS from '../data/projects';
 
 // hook imports
 import useInView from "../hooks/useInView";
