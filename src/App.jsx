@@ -4,11 +4,8 @@ import { TbArrowBigUpFilled } from "react-icons/tb";
 import cvPhoto from "./assets/cv.png";
 
 // layout imports
-import NavBar from './layouts/NavBar';
 import Hero from './layouts/Hero';
 import About from './layouts/About';
-import Projects from './layouts/Projects';
-import Footer from "./layouts/Footer";
 
 // style imports
 import styles from './styles/style';
@@ -17,10 +14,13 @@ import styles from './styles/style';
 import theme from './config/theme';
 
 // components imports
-import ScrollToTopButton from './components/scrollTop';
+import NavBar from './components/NavBar';
+import Projects from './components/Projects';
+import Footer from "./components/Footer";
 
 // hook imports
 import useInView from "./hooks/useInView";
+import ScrollToTopButton from './hooks/useScrollTop';
 
 
 function Cv() {
