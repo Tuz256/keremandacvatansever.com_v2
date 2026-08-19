@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
+// data imports
 import PROJECTS from '../data/projects';
 
 // hook imports
