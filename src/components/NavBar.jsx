@@ -5,8 +5,6 @@ import theme from '../config/theme';
 const NAV_LINKS = [
   { label: "HAKKIMDA", id: "About" },
   { label: "PROJELER", id: "Projects" },
-  // { label: "CV", id: "Cv" },
-  // { label: "İLETİŞİM", id: "Contact" },
 ];
 
 export default function Navbar({ active, setActive }) {
@@ -45,16 +43,6 @@ export default function Navbar({ active, setActive }) {
       display: "flex", alignItems: "center", justifyContent: "space-between",
       height: "64px",
     }}>
-      {/* <a href="/" style={{
-        fontFamily: theme.fonts.heading,
-        textDecoration: "none",
-        fontSize: "1.25rem",
-        fontWeight: 700,
-        color: "#fff",
-        letterSpacing: "0.02em",
-      }}>
-        KA<span style={{ color: theme.colors.brandColor }}>.</span>
-      </a> */}
 
       <a href="/" onClick={handleLogoClick} style={{ textDecoration: "none" }}>
         <span style={{
@@ -142,4 +130,3 @@ export default function Navbar({ active, setActive }) {
     </nav>
   );
 }
-
