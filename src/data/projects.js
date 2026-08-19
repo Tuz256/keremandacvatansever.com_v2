@@ -14,7 +14,7 @@ const PROJECTS = [
     description: "Bisikletçiler için ESP32 üzerine geliştirilmiş bir yol bilgisayarı.",
     link: "https://github.com/Tuz256/Bicycle_Computer_wESP32",
     tags: ["C / C++", "TFT", "ESP32", "Arduino", "Embedded"],
-    color: "#c8f0d0",
+    color: "rgb(233, 163, 163)",
     emoji: "🚴‍♂️",
   },
   {
@@ -23,7 +23,7 @@ const PROJECTS = [
     description: "Kendimi tanıtmamı sağlayan, çeşitli projelerimi ve hobilerimi sergilediğim bir site.",
     link: "https://github.com/Tuz256/keremandacvatansever.com",
     tags: ["React", "CSS", "JavaScript", "Web"],
-    color: "#f0e4c8",
+    color: "#d39cea",
     emoji: "🌐",
   },
   {
