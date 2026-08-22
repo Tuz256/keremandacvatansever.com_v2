@@ -1,6 +1,5 @@
 ---
-// Theme veya diğer ayarlarınızı içe aktarın
-import theme from "../config/theme";
+import "../styles/global.css";
 
 interface Props {
   title?: string;
@@ -16,7 +15,6 @@ const { title = "Astro App" } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
 
-    <!-- Font Bağlantıları (useEffect yerine doğrudan HTML) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,17 +23,6 @@ const { title = "Astro App" } = Astro.props;
     />
   </head>
   <body>
-    <!-- Sayfa içerikleri buraya yüklenir -->
     <slot />
   </body>
 </html>
-
-<style is:global define:vars={{ bgColor: theme.colors.bg }}>
-  /* useEffect içindeki body stilleri */
-  body {
-    margin: 0;
-    background-color: var(--bgColor);
-    color: #fff;
-    overflow-x: hidden;
-  }
-</style>
