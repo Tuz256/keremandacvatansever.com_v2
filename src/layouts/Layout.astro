@@ -1,0 +1,41 @@
+---
+// Theme veya diğer ayarlarınızı içe aktarın
+import theme from "../config/theme";
+
+interface Props {
+  title?: string;
+}
+
+const { title = "Astro App" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+
+    <!-- Font Bağlantıları (useEffect yerine doğrudan HTML) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Sayfa içerikleri buraya yüklenir -->
+    <slot />
+  </body>
+</html>
+
+<style is:global define:vars={{ bgColor: theme.colors.bg }}>
+  /* useEffect içindeki body stilleri */
+  body {
+    margin: 0;
+    background-color: var(--bgColor);
+    color: #fff;
+    overflow-x: hidden;
+  }
+</style>

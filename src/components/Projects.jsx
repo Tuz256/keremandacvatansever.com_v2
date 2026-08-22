@@ -110,6 +110,7 @@ export default function Projects() {
             transition: "all 0.8s ease",
           }}
         >
+
           {PROJECTS.map((p, i) => (
             <ProjectCard key={p.id} project={p} delay={i * 0.1} />
           ))}

@@ -1,34 +1,43 @@
-# ͙͘͡[★🌐 My Personal Website 🌐͙͘͡★](https://keremandacvatansever.com/)
+# Astro Starter Kit: Minimal
 
-This is my first published personal website. Its fully build with React used Ai tools.
+```sh
+npm create astro@latest -- --template minimal
+```
 
-The site will include these;
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-* About me            (✔️ Done )
-* Personal projects   (✔️ Done )
+## 🚀 Project Structure
 
-* Contact me          (⏳ In development)
-* Photo gallery       (⏳ In development)
-* Food recipies       (⏳ In development)
+Inside of your Astro project, you'll see the following folders and files:
 
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
 
-## 🎨 Front-end
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-I like styling. But I hate html, css and java. Their structure is complicated and chaotic.So I'm using;
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-* [React](https://react.dev/)
+Any static assets, like images, can be placed in the `public/` directory.
 
+## 🧞 Commands
 
-## 👨‍💻 Back-end
+All commands are run from the root of the project, from a terminal:
 
-It not coded yet.     (📅 Planned)
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## 👀 Want to learn more?
 
-## 🛢 Database
-
-It not coded yet.     (📅 Planned)
-
-
-## 🏗️ Builder
-
-I love [Vite](https://vite.dev/). It is simple. And effective. I don't use everything that Vite provide yet.
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

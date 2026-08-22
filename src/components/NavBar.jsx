@@ -7,14 +7,45 @@ const NAV_LINKS = [
   { label: "PROJELER", id: "Projects" },
 ];
 
-export default function Navbar({ active, setActive }) {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [active, setActive] = useState("");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40);
+
+      const scrollPosition = window.scrollY + 250;
+
+      let currentSection = "";
+
+      NAV_LINKS.forEach((link) => {
+        const section = document.getElementById(link.id);
+
+        if (!section) return;
+
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+
+        if (
+          scrollPosition >= sectionTop &&
+          scrollPosition < sectionBottom
+        ) {
+          currentSection = link.label;
+        }
+      });
+
+      setActive(currentSection);
+    };
+
     window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+
+    onScroll();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   const handleNav = (link) => {
@@ -65,6 +96,7 @@ export default function Navbar({ active, setActive }) {
             key={link.id}
             onClick={() => handleNav(link)}
             style={{
+              position: "relative",
               background: "none",
               border: "none",
               cursor: "pointer",
@@ -72,16 +104,34 @@ export default function Navbar({ active, setActive }) {
               fontSize: "0.875rem",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: active === link.label ? theme.colors.brandColor : "#ffffffa6",
+              color:
+                active === link.label
+                  ? theme.colors.brandColor
+                  : "#ffffffa6",
               transition: "color 0.2s",
               padding: "0.25rem 0",
-              borderBottom:
-                active === link.label
-                  ? `1px solid ${theme.colors.brandColor}`
-                  : "1px solid transparent",
             }}
           >
             {link.label}
+
+            <span
+              style={{
+                position: "absolute",
+                left: 0,
+                bottom: 0,
+                width: "100%",
+                height: "1px",
+                background: theme.colors.brandColor,
+
+                transform:
+                  active === link.label
+                    ? "scaleX(1)"
+                    : "scaleX(0)",
+
+                transformOrigin: "center",
+                transition: "transform 0.3s ease",
+              }}
+            />
           </button>
         ))}
       </div>
