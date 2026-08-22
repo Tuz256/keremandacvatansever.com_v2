@@ -1,18 +1,13 @@
 ---
-// Astro Ön-Bölümü (Frontmatter): Sunucu tarafında çalışan JavaScript kodları
 import styles from "../../styles/style";
 
 import Navbar from "../../components/NavBar.astro";
-// import Navbar from "../../components/NavBar";
 
 import Hero from "../../layouts/Hero.astro";
 import About from "../../layouts/About.astro";
 import Projects from "../../components/Projects";
 // import ScrollToTopButton from "../../hooks/useScrollTop";
 import Footer from "../../components/Footer.astro";
-
-// Note: Astro'da state (useState) doğrudan HTML dosyası içinde kullanılmaz.
-// Etkileşimli (React/Vue/Svelte) bileşenleri "client:load" directive'i ile çağırırız.
 ---
 
 <div style={styles.main}>

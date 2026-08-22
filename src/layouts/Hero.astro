@@ -1,38 +1,27 @@
 ---
-import theme from '../config/theme';
+import theme from "../js/theme";
 ---
 
 <section id="hero">
-  {/* Animated bg blobs */}
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
 
   <div class="hero-content">
-    <p class="greeting">
-      Merhaba, ben
-    </p>
+    <p class="greeting">Merhaba, ben</p>
 
-    <h1 class="title-first">
-      Kerem Andaç
-    </h1>
-    <h1 class="title-second">
-      Vatansever
-    </h1>
+    <h1 class="title-first">Kerem Andaç</h1>
+    <h1 class="title-second">Vatansever</h1>
 
-    <div class="button-group">
-      {/* İhtiyaç duyulduğunda yorum satırlarını kaldırıp kullanabilirsiniz:
-      <a href="#projeler" class="btn btn-primary">Projeleri Gör</a>
-      <a href="#iletisim" class="btn btn-secondary">İletişime Geç</a> 
-      */}
-    </div>
   </div>
 </section>
 
-<style define:vars={{ 
-  headingFont: theme.fonts.heading, 
-  bodyFont: theme.fonts.body,
-  brandColor: theme.colors.brandColor 
-}}>
+<style
+  define:vars={{
+    headingFont: theme.fonts.heading,
+    bodyFont: theme.fonts.body,
+    brandColor: theme.colors.brandColor,
+  }}
+>
   #hero {
     min-height: 100vh;
     display: flex;
@@ -146,17 +135,33 @@ import theme from '../config/theme';
   }
 
   @keyframes float1 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(20px, -30px) scale(1.05); }
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(20px, -30px) scale(1.05);
+    }
   }
 
   @keyframes float2 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(-25px, 20px) scale(1.03); }
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(-25px, 20px) scale(1.03);
+    }
   }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>
