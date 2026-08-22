@@ -1,7 +1,7 @@
 ---
-import { Image } from 'astro:assets';
-import meImage from '../assets/cift_monitor.png';
-import theme from '../config/theme';
+import { Image } from "astro:assets";
+import meImage from "../images/cift_monitor.png";
+import theme from "../js/theme";
 ---
 
 <section id="About">
@@ -9,11 +9,7 @@ import theme from '../config/theme';
     {/* Avatar */}
     <div class="avatar-wrapper">
       <div class="avatar-box">
-        <Image 
-          src={meImage} 
-          alt="Avatar" 
-          class="avatar-img"
-        />
+        <Image src={meImage} alt="Avatar" class="avatar-img" />
       </div>
     </div>
 
@@ -26,17 +22,24 @@ import theme from '../config/theme';
       </h2>
 
       <p class="description">
-        Gömülü Sistemler ve IoT alanlarına odaklanmış Bilgisayar Mühendisliği mezunu. ESP32 ve STM32 platformları üzerindeki uygulamalı çalışmaları sayesinde C/C++, FreeRTOS ve donanım protokolleri (UART, SPI, MQTT) konularında yetkinlik sahibidir. Gömülü sistem çözümleri geliştirme konusunda tutkuludur. <br /><br />2017'den bu yana profesyonel dağ bisikletçisidir.
+        Gömülü Sistemler ve IoT alanlarına odaklanmış Bilgisayar Mühendisliği
+        mezunu. ESP32 ve STM32 platformları üzerindeki uygulamalı çalışmaları
+        sayesinde C/C++, FreeRTOS ve donanım protokolleri (UART, SPI, MQTT)
+        konularında yetkinlik sahibidir. Gömülü sistem çözümleri geliştirme
+        konusunda tutkuludur. <br /><br />2017'den bu yana profesyonel dağ
+        bisikletçisidir.
       </p>
     </div>
   </div>
 </section>
 
-<style define:vars={{ 
-  headingFont: theme.fonts.heading, 
-  bodyFont: theme.fonts.body,
-  brandColor: theme.colors.brandColor 
-}}>
+<style
+  define:vars={{
+    headingFont: theme.fonts.heading,
+    bodyFont: theme.fonts.body,
+    brandColor: theme.colors.brandColor,
+  }}
+>
   #About {
     padding: 7rem 2rem;
     max-width: 1100px;
@@ -48,7 +51,6 @@ import theme from '../config/theme';
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
     align-items: center;
-    /* Dahili animasyon */
     animation: fadeUp 0.8s ease forwards;
   }
 
@@ -81,9 +83,15 @@ import theme from '../config/theme';
     line-height: 1.2;
   }
 
-  .highlight-green { color: #66db00; }
-  .highlight-blue { color: #00cddb; }
-  .highlight-brand { color: var(--brandColor); }
+  .highlight-green {
+    color: #66db00;
+  }
+  .highlight-blue {
+    color: #00cddb;
+  }
+  .highlight-brand {
+    color: var(--brandColor);
+  }
 
   .description {
     font-family: var(--bodyFont);

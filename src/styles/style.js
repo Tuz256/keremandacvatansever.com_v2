@@ -1,4 +1,4 @@
-import theme from '../config/theme';
+import theme from '../js/theme';
 
 const styles = {
   main: {

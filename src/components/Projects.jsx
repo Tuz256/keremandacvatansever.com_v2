@@ -1,13 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 
-// data imports
-import PROJECTS from '../data/projects';
-
-// hook imports
-import useInView from "../hooks/useInView";
-
-// config imports
-import theme from "../config/theme";
+// js imports
+import PROJECTS from '../js/projects';
+import useInView from "../js/useInView";
+import theme from "../js/theme";
 
 function ProjectCard({ project, delay }) {
   const [hovered, setHovered] = useState(false);
