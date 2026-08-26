@@ -3,7 +3,8 @@ import { useState, useEffect, useRef } from "react";
 // js imports
 import PROJECTS from '../js/projects';
 import useInView from "../js/useInView";
-import theme from "../js/theme";
+import { theme } from "../styles/style.js";
+
 
 function ProjectCard({ project, delay }) {
   const [hovered, setHovered] = useState(false);

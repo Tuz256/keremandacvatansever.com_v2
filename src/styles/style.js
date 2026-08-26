@@ -1,6 +1,20 @@
-import theme from '../js/theme';
 
-const styles = {
+export const theme = {
+  fonts: {
+    heading: "'Playfair Display', Georgia, serif",
+    body: "'DM Sans', sans-serif"
+  },
+
+  colors: {
+    bg: "#181822",
+    bgNavBar: "#0a0a0eeb",
+    brandColor: "#d900ff",
+    brandColor2: "#7fffd4",
+  },
+}
+
+export const styles = {
+
   main: {
     background: theme.colors.bg,
     minHeight: "100vh",
@@ -17,5 +31,3 @@ const styles = {
     color: "#ffffff40",
   }
 }
-
-export default styles;
