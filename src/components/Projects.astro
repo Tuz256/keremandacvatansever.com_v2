@@ -1,6 +1,5 @@
 ---
-import PROJECTS from "../js/projects";
-import { theme } from "../styles/style";
+import PROJECTS from "../data/projects";
 ---
 
 <section id="Projects">
@@ -39,13 +38,7 @@ import { theme } from "../styles/style";
   </div>
 </section>
 
-<style
-  define:vars={{
-    headingFont: theme.fonts.heading,
-    bodyFont: theme.fonts.body,
-    brandColor: theme.colors.brandColor,
-  }}
->
+<style>
   section {
     padding: 7rem 2rem;
     background: rgba(255, 255, 255, 0.02);
@@ -57,7 +50,7 @@ import { theme } from "../styles/style";
   }
 
   .title {
-    font-family: var(--headingFont);
+    font-family: var(--font-heading);
     font-size: clamp(2rem, 4vw, 2.75rem);
     color: #fff;
     margin-bottom: 1.5rem;
@@ -69,7 +62,6 @@ import { theme } from "../styles/style";
     justify-content: center;
     gap: 1.5rem;
 
-    /* React'teki useInView yerine CSS Animation Timeline */
     animation: fadeInUp 0.8s ease forwards;
     animation-timeline: view();
     animation-range: entry 10% cover 30%;
@@ -87,7 +79,6 @@ import { theme } from "../styles/style";
     animation-delay: var(--delay);
   }
 
-  /* React'teki state tabanlı hover yerine CSS :hover */
   .project-card:hover {
     background: rgba(255, 255, 255, 0.04);
     border-color: rgba(127, 255, 212, 0.3);
@@ -130,9 +121,9 @@ import { theme } from "../styles/style";
     background: #00ffaa14;
     border: 1px solid #7fffd426;
     border-radius: 4px;
-    font-family: var(--bodyFont);
+    font-family: var(--font-body);
     font-size: 0.72rem;
-    color: var(--brandColor);
+    color: var(--color-brand);
     letter-spacing: 0.08em;
   }
 
