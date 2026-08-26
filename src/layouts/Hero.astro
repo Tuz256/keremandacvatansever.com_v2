@@ -1,0 +1,158 @@
+---
+
+---
+
+<section id="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="hero-content">
+    <h1 class="title-first">Kerem Andaç</h1>
+    <h1 class="title-second">Vatansever</h1>
+  </div>
+</section>
+
+<style>
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .blob-1 {
+    top: 10%;
+    left: 5%;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, #7fffd41f 0%, transparent 70%);
+    animation: float1 8s ease-in-out infinite;
+  }
+
+  .blob-2 {
+    bottom: 15%;
+    right: 10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #6495ed1a 0%, transparent 70%);
+    animation: float2 10s ease-in-out infinite;
+  }
+
+  .hero-content {
+    text-align: center;
+    max-width: 740px;
+    z-index: 1;
+  }
+
+  .greeting {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    color: var(--color-brand);
+    margin-bottom: 2rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .title-first {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 0.8;
+    color: #fff;
+    margin-bottom: 0rem;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+
+  .title-second {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 0.4;
+    color: var(--color-brand);
+    margin-bottom: 3rem;
+    animation: fadeUp 0.8s 0.25s ease both;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2rem;
+    animation: fadeUp 0.8s 0.55s ease both;
+  }
+
+  .btn {
+    padding: 0.875rem 2rem;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--color-brand);
+    color: #0a0a0e;
+    border: none;
+    font-weight: 700;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(127, 255, 212, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    font-weight: 600;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-brand);
+    color: var(--color-brand);
+  }
+
+  @keyframes float1 {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(20px, -30px) scale(1.05);
+    }
+  }
+
+  @keyframes float2 {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(-25px, 20px) scale(1.03);
+    }
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

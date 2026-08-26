@@ -1,0 +1,241 @@
+---
+const NAV_LINKS = [
+  { label: "HAKKIMDA", id: "About" },
+  { label: "PROJELER", id: "Projects" },
+];
+---
+
+<nav id="navbar">
+  <a href="/" id="logo-link">
+    <span class="logo-text">
+      KA<span class="brand-dot">.</span>
+    </span>
+  </a>
+
+  <!-- Desktop Navigation -->
+  <div class="desktop-nav">
+    {
+      NAV_LINKS.map((link) => (
+        <a href={`#${link.id}`} class="nav-link" data-section={link.id}>
+          {link.label}
+          <span class="underline" />
+        </a>
+      ))
+    }
+  </div>
+
+  <!-- Mobile Menu Button -->
+  <button id="menu-btn" class="mobile-menu-btn" aria-label="Menüyü Aç/Kapat">
+    <span class="icon-bar">☰</span>
+  </button>
+
+  <!-- Mobile Navigation -->
+  <div id="mobile-menu" class="mobile-menu hidden">
+    {
+      NAV_LINKS.map((link) => (
+        <a href={`#${link.id}`} class="mobile-nav-link" data-section={link.id}>
+          {link.label}
+        </a>
+      ))
+    }
+  </div>
+</nav>
+
+<script>
+  const navbar = document.getElementById("navbar");
+  const menuBtn = document.getElementById("menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const iconBar = menuBtn?.querySelector(".icon-bar");
+  const navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link");
+  const logoLink = document.getElementById("logo-link");
+
+  const onScroll = () => {
+    if (window.scrollY > 40) {
+      navbar?.classList.add("scrolled");
+    } else {
+      navbar?.classList.remove("scrolled");
+    }
+
+    const scrollPosition = window.scrollY + 250;
+
+    navLinks.forEach((link) => {
+      const sectionId = link.getAttribute("data-section");
+      if (!sectionId) return;
+
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+
+      const sectionTop = section.offsetTop;
+      const sectionBottom = sectionTop + section.offsetHeight;
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+        link.classList.add("active");
+      } else {
+        link.classList.remove("active");
+      }
+    });
+  };
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  menuBtn?.addEventListener("click", () => {
+    const isHidden = mobileMenu?.classList.toggle("hidden");
+    if (iconBar) {
+      iconBar.textContent = isHidden ? "☰" : "✕";
+    }
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute("data-section");
+      const targetSection = targetId ? document.getElementById(targetId) : null;
+
+      if (targetSection) {
+        targetSection.scrollIntoView({ behavior: "smooth" });
+      }
+
+      if (!mobileMenu?.classList.contains("hidden")) {
+        mobileMenu?.classList.add("hidden");
+        if (iconBar) iconBar.textContent = "☰";
+      }
+    });
+  });
+
+  logoLink?.addEventListener("click", (e) => {
+    if (
+      window.location.pathname === "/" ||
+      window.location.pathname === "/index.html"
+    ) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  });
+</script>
+
+<style>
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 0 2rem;
+    background: transparent;
+    backdrop-filter: none;
+    transition: all 0.35s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  nav.scrolled {
+    background: var(--color-bg-navbar);
+    backdrop-filter: blur(12px);
+  }
+
+  #logo-link {
+    text-decoration: none;
+  }
+
+  .logo-text {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+  }
+
+  .brand-dot {
+    color: var(--color-brand);
+  }
+
+  /* Desktop Nav */
+  .desktop-nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    position: relative;
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffffa6;
+    transition: color 0.2s;
+    padding: 0.25rem 0;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-brand);
+  }
+
+  .underline {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--color-brand);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-link.active .underline {
+    transform: scaleX(1);
+  }
+
+  /* Mobile Nav */
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1.5rem;
+  }
+
+  .mobile-menu {
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: #0a0a0ef7;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .mobile-menu.hidden {
+    display: none;
+  }
+
+  .mobile-nav-link {
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: #fff;
+    text-align: left;
+  }
+
+  .mobile-nav-link.active {
+    color: var(--color-brand);
+  }
+
+  @media (max-width: 640px) {
+    .desktop-nav {
+      display: none !important;
+    }
+    .mobile-menu-btn {
+      display: block !important;
+    }
+  }
+</style>

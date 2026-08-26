@@ -1,0 +1,30 @@
+:root {
+  /* Fonts */
+  --font-heading: "'Playfair Display', Georgia, serif";
+  --font-body: 'DM Sans', sans-serif;
+
+  /* Colors */
+  --color-bg: #181822;
+  --color-bg-navbar: #0a0a0eeb;
+  --color-brand: #d900ff;
+  --color-brand-2: #7fffd4;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+
+  background: var(--color-bg);
+  color: #fff;
+
+  font-family: var(--font-body);
+
+  overflow-x: hidden;
+}

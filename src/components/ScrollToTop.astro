@@ -1,0 +1,80 @@
+---
+
+---
+
+<button id="scroll-to-top" aria-label="Yukarı çık" type="button">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path d="M12 4l-8 8h5v8h6v-8h5l-8-8z"></path>
+  </svg>
+</button>
+
+<style>
+  #scroll-to-top {
+    position: fixed;
+    display: none;
+    bottom: 40px;
+    right: 40px;
+
+    width: 60px;
+    height: 60px;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2rem;
+    border-radius: 50%;
+    border: none;
+
+    background-color: var(--bgNavBar);
+    color: var(--brandColor);
+
+    cursor: pointer;
+    box-shadow: 0 2px 6px #0000004d;
+
+    z-index: 1000;
+  }
+
+  #scroll-to-top.visible {
+    display: flex;
+  }
+
+  #scroll-to-top svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  @media (max-width: 768px) {
+    #scroll-to-top {
+      width: 50px;
+      height: 50px;
+      right: 20px;
+      bottom: 20px;
+    }
+  }
+</style>
+
+<script>
+  const button = document.querySelector("#scroll-to-top");
+
+  if (button) {
+    const toggleVisibility = () => {
+      button.classList.toggle("visible", window.scrollY > 300);
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+
+    button.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+
+    toggleVisibility();
+  }
+</script>
