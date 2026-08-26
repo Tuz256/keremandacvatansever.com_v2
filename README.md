@@ -16,29 +16,14 @@ The site will include these;
 
 ## 🛠️ Framework
 
-Astro is beautifully built by who had loved ones. It's very easy to use and lightweight.
+Astro is beautifully built by who had loved ones. It's very easy to develop the way Astro work and very lightweight.
 
-* [Astro](https://astro.build/)
-<br/><br/>
-
-## 🎨 Front-end
-
-I like styling. But I hate html, css and java. Their structure is complicated and chaotic. So I'm using;
-
-* [React](https://react.dev/)
-<br/><br/>
-
-## 👨‍💻 Back-end
-
-It not coded yet.     (📅 Planned)
-<br/><br/>
-
-## 🛢 Database
-
-It not coded yet.     (📅 Planned)
+* [Astro (click me!)](https://astro.build/)
 <br/><br/>
 
 ## 🏗️ Builder
 
-I love [Vite](https://vite.dev/). It is simple. And effective. I don't need to use everything that Vite provide yet.
+I love Vite. It is simple and effective. For now I don't need everything that Vite provide. It has many things to use.
+
+* [Vite (click me!)](https://vite.dev/)
 <br/><br/>
