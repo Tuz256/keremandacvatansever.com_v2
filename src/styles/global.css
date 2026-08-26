@@ -1,6 +1,6 @@
 :root {
   /* Fonts */
-  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-heading: "'Playfair Display', Georgia, serif";
   --font-body: 'DM Sans', sans-serif;
 
   /* Colors */
@@ -10,23 +10,21 @@
   --color-brand-2: #7fffd4;
 }
 
-/* Base resets & main layout rules */
+html {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   padding: 0;
-  background: var(--color-bg);
   min-height: 100vh;
-  border: none;
-  overflow-x: hidden;
-  font-family: var(--font-body);
-}
 
-/* Global Footer Style */
-.site-footer {
-  padding: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  text-align: center;
+  background: var(--color-bg);
+  color: #fff;
+
   font-family: var(--font-body);
-  font-size: 0.8rem;
-  color: #ffffff40;
+
+  overflow-x: hidden;
 }

@@ -1,7 +1,6 @@
 ---
 import { Image } from "astro:assets";
 import meImage from "../images/cift_monitor.png";
-import { theme } from "../styles/style.js";
 ---
 
 <section id="About">
@@ -33,13 +32,7 @@ import { theme } from "../styles/style.js";
   </div>
 </section>
 
-<style
-  define:vars={{
-    headingFont: theme.fonts.heading,
-    bodyFont: theme.fonts.body,
-    brandColor: theme.colors.brandColor,
-  }}
->
+<style>
   #About {
     padding: 7rem 2rem;
     max-width: 1100px;
@@ -76,7 +69,7 @@ import { theme } from "../styles/style.js";
   }
 
   .heading {
-    font-family: var(--headingFont);
+    font-family: var(--font-heading);
     font-size: clamp(2rem, 4vw, 2.75rem);
     color: #fff;
     margin: 1.5rem 0;
@@ -90,11 +83,11 @@ import { theme } from "../styles/style.js";
     color: #00cddb;
   }
   .highlight-brand {
-    color: var(--brandColor);
+    color: var(--color-brand);
   }
 
   .description {
-    font-family: var(--bodyFont);
+    font-family: var(--font-body);
     font-size: 1rem;
     color: #ffffffcc;
     line-height: 1.8;

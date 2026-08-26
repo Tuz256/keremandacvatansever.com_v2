@@ -1,20 +1,18 @@
 ---
-import { styles } from "../../styles/style";
-
 import Projects from "../../components/Projects.astro";
 import Navbar from "../../components/NavBar.astro";
 import Footer from "../../components/Footer.astro";
 
 import Hero from "../../layouts/Hero.astro";
 import About from "../../layouts/About.astro";
-// import ScrollToTopButton from "../../hooks/useScrollTop";
+import ScrollToTopButton from "../../components/ScrollToTop.astro";
 ---
 
-<div style={styles.main}>
+<div id="Main">
   <Navbar client:load />
   <Hero client:load />
   <About />
   <Projects client:visible />
-  <!-- <ScrollToTopButton client:visible /> -->
+  <ScrollToTopButton client:load />
   <Footer />
 </div>

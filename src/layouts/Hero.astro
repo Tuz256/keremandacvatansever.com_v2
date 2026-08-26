@@ -1,5 +1,5 @@
 ---
-import { theme } from "../styles/style.js";
+
 ---
 
 <section id="hero">
@@ -7,20 +7,12 @@ import { theme } from "../styles/style.js";
   <div class="blob blob-2"></div>
 
   <div class="hero-content">
-    <!-- <p class="greeting">Merhaba, ben</p> -->
-
     <h1 class="title-first">Kerem Andaç</h1>
     <h1 class="title-second">Vatansever</h1>
   </div>
 </section>
 
-<style
-  define:vars={{
-    headingFont: theme.fonts.heading,
-    bodyFont: theme.fonts.body,
-    brandColor: theme.colors.brandColor,
-  }}
->
+<style>
   #hero {
     min-height: 100vh;
     display: flex;
@@ -60,16 +52,16 @@ import { theme } from "../styles/style.js";
   }
 
   .greeting {
-    font-family: var(--bodyFont);
+    font-family: var(--font-body);
     font-size: 0.85rem;
     letter-spacing: 0.18em;
-    color: var(--brandColor);
+    color: var(--color-brand);
     margin-bottom: 2rem;
     animation: fadeUp 0.8s ease both;
   }
 
   .title-first {
-    font-family: var(--headingFont);
+    font-family: var(--font-heading);
     font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 700;
     line-height: 0.8;
@@ -79,11 +71,11 @@ import { theme } from "../styles/style.js";
   }
 
   .title-second {
-    font-family: var(--headingFont);
+    font-family: var(--font-heading);
     font-size: clamp(3rem, 8vw, 6rem);
     font-weight: 700;
     line-height: 0.4;
-    color: var(--brandColor);
+    color: var(--color-brand);
     margin-bottom: 3rem;
     animation: fadeUp 0.8s 0.25s ease both;
   }
@@ -100,7 +92,7 @@ import { theme } from "../styles/style.js";
   .btn {
     padding: 0.875rem 2rem;
     border-radius: 4px;
-    font-family: var(--bodyFont);
+    font-family: var(--font-body);
     font-size: 0.9rem;
     margin-top: 1rem;
     letter-spacing: 0.05em;
@@ -110,7 +102,7 @@ import { theme } from "../styles/style.js";
   }
 
   .btn-primary {
-    background: var(--brandColor);
+    background: var(--color-brand);
     color: #0a0a0e;
     border: none;
     font-weight: 700;
@@ -129,8 +121,8 @@ import { theme } from "../styles/style.js";
   }
 
   .btn-secondary:hover {
-    border-color: var(--brandColor);
-    color: var(--brandColor);
+    border-color: var(--color-brand);
+    color: var(--color-brand);
   }
 
   @keyframes float1 {
