@@ -1,11 +1,12 @@
 ---
 import "../styles/global.css";
 
-interface Props {
-  title?: string;
-}
+// interface Props {
+//   title?: string;
+// }
 
-const { title = "Astro App" } = Astro.props;
+const { title = "Default title", description = "Default description" } =
+  Astro.props;
 ---
 
 <!doctype html>
