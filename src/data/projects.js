@@ -22,7 +22,7 @@ const PROJECTS = [
     title: "Kişisel Website",
     description: "Kendimi tanıtmamı sağlayan, çeşitli projelerimi ve hobilerimi sergilediğim bir site.",
     link: "https://github.com/Tuz256/keremandacvatansever.com_v2",
-    tags: ["React", "CSS", "JavaScript", "Web"],
+    tags: ["Astro", "JavaScript", "CSS", "HTML", "Web"],
     color: "#d39cea",
     emoji: "🌐",
   },

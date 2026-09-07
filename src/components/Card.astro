@@ -1,0 +1,245 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  description?: string;
+  link?: string;
+  tags?: string[];
+  emoji?: string;
+  image?: ImageMetadata;
+  color?: string;
+  delay?: number;
+}
+
+const {
+  title,
+  description,
+  link,
+  tags = [],
+  emoji,
+  image,
+  color,
+  delay = 0,
+} = Astro.props;
+
+const hasImage = Boolean(image);
+---
+
+<a
+  href={link || "#"}
+  target="_self"
+  rel="noopener noreferrer"
+  class="card"
+  style={`--delay: ${delay}s;`}
+>
+  <div class={hasImage ? "two-column" : "card-header"}>
+    <div class="content">
+      <h3>{title}</h3>
+      {description && <p>{description}</p>}
+    </div>
+
+    {
+      image && (
+        <>
+          <div
+            class="image-wrapper"
+            style={color ? `background-color: ${color};` : ""}
+          >
+            <Image
+              src={image}
+              alt={title}
+              width={1200}
+              height={800}
+              quality={90}
+              format="webp"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+
+          <div class="image-preview">
+            <Image
+              src={image}
+              alt={`${title} önizleme`}
+              width={1440}
+              height={960}
+              quality={90}
+              format="webp"
+              loading="lazy"
+            />
+          </div>
+        </>
+      )
+    }
+
+    {
+      !image && emoji && (
+        <div
+          class="emoji-wrapper"
+          style={color ? `background-color: ${color};` : ""}
+        >
+          {emoji}
+        </div>
+      )
+    }
+  </div>
+
+  {
+    tags.length > 0 && (
+      <div class="tags">
+        {tags.map((tag) => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+    )
+  }
+</a>
+
+<style>
+  .card {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation-delay: var(--delay);
+  }
+
+  .card:hover .image-preview {
+    display: flex;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .card:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(127, 255, 212, 0.3);
+    transform: translateY(-6px);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .two-column {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .content {
+    flex: 1;
+  }
+
+  h3 {
+    color: #fff;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  .emoji-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+    margin-left: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .image-wrapper {
+    width: 100%;
+    max-width: 165px;
+
+    aspect-ratio: 3 / 2;
+    height: auto;
+
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+
+  .image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .image-preview {
+    display: none;
+    position: absolute;
+    left: 30%;
+    bottom: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 300px;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .image-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    padding: 0.25rem 0.6rem;
+    background: #c300ff14;
+    border: 1px solid #7fffd426;
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    color: #fff;
+    letter-spacing: 0.08em;
+  }
+
+  @media (max-width: 768px) {
+    .image-wrapper {
+      width: 165px;
+      height: 110px;
+    }
+
+    .image-preview {
+      display: none !important;
+    }
+  }
+</style>

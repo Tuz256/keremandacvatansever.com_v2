@@ -1,8 +1,12 @@
 ---
-const NAV_LINKS = [
+const PAGE_LINKS = [{ label: "TARİFLER", id: "Recipes", href: "/recipes" }];
+
+const SECTION_LINKS = [
   { label: "HAKKIMDA", id: "About" },
   { label: "PROJELER", id: "Projects" },
 ];
+
+const { current = "Default current" } = Astro.props;
 ---
 
 <nav id="navbar">
@@ -12,17 +16,34 @@ const NAV_LINKS = [
     </span>
   </a>
 
-  <!-- Desktop Navigation -->
-  <div class="desktop-nav">
+  <!-- Page Navigation -->
+  <div class="page-nav">
     {
-      NAV_LINKS.map((link) => (
-        <a href={`#${link.id}`} class="nav-link" data-section={link.id}>
-          {link.label}
+      PAGE_LINKS.map((item) => (
+        <a
+          href={item.href}
+          class:list={["nav-link", { active: current === item.id }]}
+        >
+          {item.label}
           <span class="underline" />
         </a>
       ))
     }
   </div>
+
+  <!-- Desktop Navigation -->
+  {
+    current === "Home" && (
+      <div class="desktop-nav">
+        {SECTION_LINKS.map((item) => (
+          <a href={`#${item.id}`} class="nav-link" data-section={item.id}>
+            {item.label}
+            <span class="underline" />
+          </a>
+        ))}
+      </div>
+    )
+  }
 
   <!-- Mobile Menu Button -->
   <button id="menu-btn" class="mobile-menu-btn" aria-label="Menüyü Aç/Kapat">
@@ -32,12 +53,37 @@ const NAV_LINKS = [
   <!-- Mobile Navigation -->
   <div id="mobile-menu" class="mobile-menu hidden">
     {
-      NAV_LINKS.map((link) => (
-        <a href={`#${link.id}`} class="mobile-nav-link" data-section={link.id}>
-          {link.label}
-        </a>
-      ))
+      current === "Home" && (
+        <>
+          <div class="mobile-sections">
+            {SECTION_LINKS.map((link) => (
+              <a
+                href={`#${link.id}`}
+                class="mobile-nav-link"
+                data-section={link.id}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          <div class="mobile-divider" />
+        </>
+      )
     }
+
+    <div class="mobile-pages">
+      {
+        PAGE_LINKS.map((item) => (
+          <a
+            href={item.href}
+            class:list={["mobile-nav-link", { active: current === item.id }]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
   </div>
 </nav>
 
@@ -46,7 +92,7 @@ const NAV_LINKS = [
   const menuBtn = document.getElementById("menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");
   const iconBar = menuBtn?.querySelector(".icon-bar");
-  const navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link");
+  const navLinks = document.querySelectorAll("[data-section]");
   const logoLink = document.getElementById("logo-link");
 
   const onScroll = () => {
@@ -121,19 +167,45 @@ const NAV_LINKS = [
     left: 0;
     right: 0;
     z-index: 100;
+    height: 64px;
     padding: 0 2rem;
-    background: transparent;
-    backdrop-filter: none;
-    transition: all 0.35s ease;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 64px;
+
+    position: fixed;
+    background: transparent;
+    backdrop-filter: none;
+    transition: all 0.35s ease;
   }
 
   nav.scrolled {
     background: var(--color-bg-navbar);
     backdrop-filter: blur(12px);
+  }
+
+  .page-nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+  }
+
+  .page-nav .nav-link.active .underline {
+    animation: underlineIn 0.3s ease forwards;
+  }
+
+  @keyframes underlineIn {
+    from {
+      transform: scaleX(0);
+    }
+
+    to {
+      transform: scaleX(1);
+    }
   }
 
   #logo-link {
@@ -185,11 +257,10 @@ const NAV_LINKS = [
     background: var(--color-brand);
     transform: scaleX(0);
     transform-origin: center;
-    transition: transform 0.3s ease;
   }
 
   .nav-link.active .underline {
-    transform: scaleX(1);
+    animation: underlineIn 0.3s ease forwards;
   }
 
   /* Mobile Nav */
@@ -208,14 +279,26 @@ const NAV_LINKS = [
     left: 0;
     right: 0;
     background: #0a0a0ef7;
+    backdrop-filter: blur(12px);
     padding: 1.5rem;
+  }
+
+  .mobile-menu.hidden {
+    display: none;
+  }
+
+  .mobile-sections,
+  .mobile-pages {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
   }
 
-  .mobile-menu.hidden {
-    display: none;
+  .mobile-divider {
+    width: 80%;
+    height: 1px;
+    margin: 1.5rem auto;
+    background: rgba(255, 255, 255, 0.2);
   }
 
   .mobile-nav-link {
@@ -234,6 +317,11 @@ const NAV_LINKS = [
     .desktop-nav {
       display: none !important;
     }
+
+    .page-nav {
+      display: none !important;
+    }
+
     .mobile-menu-btn {
       display: block !important;
     }

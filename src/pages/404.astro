@@ -1,0 +1,107 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout title="Page Not Found" description="Page not found">
+  <div class="not-found">
+    <span class="error-code">404</span>
+
+    <h1>SAYFA BULUNAMADI!</h1>
+
+    <p>Aradığınız sayfa mevcut değil veya taşınmış olabilir.</p>
+
+    <a href="/" class="home-button"> Ana Sayfaya Dön </a>
+  </div>
+</MainLayout>
+
+<style>
+  .not-found {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    margin: 0 auto;
+  }
+
+  .error-code {
+    font-size: clamp(6rem, 15vw, 12rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.08em;
+    opacity: 0.1;
+    margin-bottom: -30px;
+    animation: fadeUp-err 0.8s 0.15s ease both;
+  }
+
+  h1 {
+    position: relative;
+    margin: 0;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  p {
+    margin: 16px 0 30px;
+    font-size: 1rem;
+    opacity: 0.6;
+    max-width: 450px;
+  }
+
+  .home-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 26px;
+    border-radius: 8px;
+    background: #111;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition:
+      transform 0.2s ease,
+      background 0.2s ease;
+  }
+
+  .home-button:hover {
+    background: #333;
+    transform: translateY(-2px);
+  }
+
+  .home-button:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 600px) {
+    .not-found {
+      min-height: 60vh;
+    }
+
+    .error-code {
+      margin-bottom: -20px;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  @keyframes fadeUp-err {
+    from {
+      opacity: 0;
+      transform: translateY(68px);
+    }
+    to {
+      opacity: 0.1;
+      transform: translateY(0);
+    }
+  }
+</style>

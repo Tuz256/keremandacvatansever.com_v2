@@ -1,8 +1,17 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Home from "./Home/Home.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+
+import Hero from "../layouts/home/Hero.astro";
+import About from "../layouts/home/About.astro";
+import ProjectCards from "../layouts/home/ProjectCards.astro";
+import ScrollToTopButton from "../components/ScrollToTop.astro";
 ---
 
-<Layout title="Kerem Andaç Vatansever">
-  <Home />
-</Layout>
+<MainLayout title="Ana Sayfa - KA." description="Home page" current="Home">
+  <div id="Main">
+    <Hero />
+    <About />
+    <ProjectCards />
+    <ScrollToTopButton />
+  </div>
+</MainLayout>

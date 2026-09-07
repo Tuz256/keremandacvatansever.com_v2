@@ -1,0 +1,303 @@
+---
+interface Props {
+  ingredients: string[];
+}
+
+const { ingredients } = Astro.props;
+---
+
+<div class="floating-panel" id="floatingIngredients">
+  <div class="floating-card">
+    <div class="collapsed-label">
+      <span>M</span><span>A</span><span>L</span><span>Z</span><span>E</span
+      ><span>M</span><span>E</span><span>L</span><span>E</span><span>R</span>
+    </div>
+    <div class="floating-content">
+      <h2>Malzemeler</h2>
+      <ul class="ingredients">
+        {ingredients.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  function setupIngredientsBehavior() {
+    const floatingPanel = document.getElementById("floatingIngredients");
+    if (!floatingPanel) return;
+
+    const SCROLL_THRESHOLD = 200;
+
+    let collapseTimer: number | null = null;
+    let scrollTimeout: number | null = null;
+
+    function startCollapseTimer() {
+      clearCollapseTimer();
+      collapseTimer = window.setTimeout(() => {
+        collapsePanel();
+      }, 3000);
+    }
+
+    function clearCollapseTimer() {
+      if (collapseTimer) {
+        clearTimeout(collapseTimer);
+        collapseTimer = null;
+      }
+    }
+
+    function expandPanel() {
+      if (!floatingPanel) return;
+      floatingPanel.classList.remove("collapsed");
+      floatingPanel.classList.add("expanded");
+    }
+
+    function collapsePanel() {
+      if (!floatingPanel) return;
+      floatingPanel.classList.remove("expanded");
+      floatingPanel.classList.add("collapsed");
+      clearCollapseTimer();
+    }
+
+    floatingPanel.addEventListener("click", (event) => {
+      if (!floatingPanel.classList.contains("active")) return;
+
+      if (floatingPanel.classList.contains("collapsed")) {
+        event.stopPropagation();
+        expandPanel();
+        startCollapseTimer();
+      }
+    });
+
+    floatingPanel.addEventListener("mouseenter", () => {
+      if (floatingPanel.classList.contains("active")) {
+        clearCollapseTimer();
+        expandPanel();
+      }
+    });
+
+    floatingPanel.addEventListener("mouseleave", () => {
+      if (
+        floatingPanel.classList.contains("active") &&
+        floatingPanel.classList.contains("expanded")
+      ) {
+        startCollapseTimer();
+      }
+    });
+
+    document.addEventListener("click", (event) => {
+      const target = event.target as Node;
+
+      if (
+        !floatingPanel.classList.contains("active") ||
+        floatingPanel.contains(target)
+      ) {
+        return;
+      }
+
+      if (floatingPanel.classList.contains("expanded")) {
+        collapsePanel();
+      }
+    });
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        const isPastThreshold = window.scrollY > SCROLL_THRESHOLD;
+
+        if (isPastThreshold) {
+          if (!floatingPanel.classList.contains("active")) {
+            floatingPanel.classList.add("active");
+            collapsePanel();
+          }
+        } else {
+          floatingPanel.classList.remove("active");
+          clearCollapseTimer();
+          return;
+        }
+
+        if (floatingPanel.classList.contains("expanded")) {
+          if (scrollTimeout) window.clearTimeout(scrollTimeout);
+
+          scrollTimeout = window.setTimeout(() => {
+            collapsePanel();
+          }, 100);
+        }
+      },
+      { passive: true },
+    );
+  }
+
+  setupIngredientsBehavior();
+  document.addEventListener("astro:page-load", setupIngredientsBehavior);
+</script>
+
+<style>
+  .ingredients {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .ingredients li {
+    font-size: clamp(0.7rem, 1vw, 1.1rem);
+    padding: 0.3rem 0.5rem;
+    border-radius: 12px;
+    background: var(--color-bg);
+    white-space: nowrap;
+  }
+
+  .floating-panel {
+    position: fixed;
+    bottom: 1rem;
+    right: 0;
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+    width: 48px;
+    transition:
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.3s ease,
+      width 0.3s ease,
+      visibility 0.3s ease;
+  }
+
+  .floating-panel.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  .floating-card {
+    width: 100%;
+    height: 22rem;
+    padding: 1.25rem 0;
+    background: var(--color-bg-navbar);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px 0 0 12px;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff59 transparent;
+    transition: all 0.3s ease;
+  }
+
+  .floating-panel.collapsed {
+    width: 48px;
+    cursor: pointer;
+  }
+
+  .floating-panel.collapsed .floating-card {
+    padding: 1.25rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .floating-panel.collapsed .floating-content {
+    display: none !important;
+  }
+
+  .collapsed-label {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: #fff;
+    user-select: none;
+  }
+
+  .floating-panel.collapsed .collapsed-label {
+    display: flex;
+  }
+
+  .floating-panel.expanded {
+    width: 300px;
+  }
+
+  .floating-panel.expanded .floating-content {
+    display: block !important;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .floating-panel.expanded .floating-card {
+    padding: 1.25rem;
+    display: block;
+  }
+
+  .floating-panel.expanded .collapsed-label {
+    display: none;
+  }
+
+  .floating-content {
+    transition: opacity 0.3s ease;
+  }
+
+  .floating-content .ingredients {
+    max-height: 55vh;
+  }
+
+  @media (max-width: 576px) {
+    .ingredients li {
+      font-size: clamp(1rem, 2vw, 2rem);
+    }
+
+    .floating-panel {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      transform: translateY(100%);
+      width: 100% !important;
+      transition:
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.3s ease !important;
+    }
+
+    .floating-panel.active {
+      transform: translateY(0);
+    }
+
+    .floating-card {
+      box-sizing: border-box;
+      height: auto;
+      max-width: 100%;
+      max-height: 30vh;
+      border-radius: 16px 16px 0 0;
+      box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .floating-panel.collapsed {
+      width: 34px;
+      transform: translateY(calc(100% - 44px));
+    }
+
+    .floating-panel.collapsed .floating-card {
+      padding: 0.85rem 1rem;
+    }
+
+    .floating-panel.collapsed .collapsed-label {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 0.25rem;
+      width: 100%;
+    }
+
+    .floating-panel.expanded {
+      transform: translateY(0);
+    }
+
+    .floating-panel.expanded .floating-card {
+      padding: 1.5rem 1.25rem;
+    }
+  }
+</style>

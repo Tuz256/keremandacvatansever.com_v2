@@ -7,11 +7,11 @@ The site will include these;
 
 * About me            (✔️ Done )
 * Personal projects   (✔️ Done )
+* Food recipes       (✔️ Done )
 <br/>
 
 * Contact me          (⏳ In development)
 * Photo gallery       (⏳ In development)
-* Food recipies       (⏳ In development)
 <br/><br/>
 
 ## 🛠️ Framework

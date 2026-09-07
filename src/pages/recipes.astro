@@ -1,0 +1,13 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+import RecipeCards from "../layouts/recipes/RecipeCards.astro";
+import ScrollToTop from "../components/ScrollToTop.astro";
+---
+
+<MainLayout title="Tarifler - KA." description="Recipes page" current="Recipes">
+  <div id="Main">
+    <RecipeCards />
+    <ScrollToTop />
+  </div>
+</MainLayout >
