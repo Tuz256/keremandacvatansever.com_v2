@@ -103,6 +103,7 @@ const hasImage = Boolean(image);
 
   .card:hover {
     transform: scale(1.4);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
     z-index: 2;
   }
@@ -132,7 +133,6 @@ const hasImage = Boolean(image);
 
   p {
     color: rgba(255, 255, 255, 0.6);
-    /* font-size: 0.9rem; */
     margin-bottom: 1rem;
     text-align: left;
   }
@@ -192,6 +192,12 @@ const hasImage = Boolean(image);
     .image-wrapper {
       width: 165px;
       height: 110px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      z-index: 2;
     }
   }
 </style>
