@@ -70,37 +70,6 @@ const allCookies = await getCollection("cookies");
     animation-range: entry 10% cover 30%;
   }
 
-  .card {
-    display: block;
-    text-decoration: none;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 1.75rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    animation-delay: var(--delay);
-  }
-
-  .card:hover {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(127, 255, 212, 0.3);
-    transform: translateY(-6px);
-  }
-
-  .card h3 {
-    color: #fff;
-    margin-top: 0;
-    margin-bottom: 1rem;
-  }
-
-  .card p {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    text-align: left;
-  }
-
   @keyframes fadeInUp {
     from {
       opacity: 0;
