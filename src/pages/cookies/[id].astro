@@ -64,7 +64,7 @@ const { Content } = await render(cookie);
     </section>
 
     <Drawer ingredients={cookie.data.ingredients} />
-    <ScrollToTop position="Left" bottom="55px" />
+    <ScrollToTop position="Left" bottom="85px" />
   </div>
 </MainLayout>
 
@@ -79,21 +79,27 @@ const { Content } = await render(cookie);
     box-sizing: border-box;
   }
 
-  section {
-    padding: 5rem 1.5rem;
-    background: rgba(255, 255, 255, 0.02);
-    width: 100%;
-    overflow-x: hidden;
-  }
-
   h1,
-  h2 {
+  h2,
+  h3,
+  h4 :global(h1, h2, h3, h4) {
+    color: var(--color-text-title);
+
     margin-top: 0;
     margin-bottom: 1rem;
   }
 
   p {
+    color: var(--color-text);
     margin: 0;
+  }
+
+  section {
+    width: 100%;
+    padding: 7rem 2rem;
+    margin: 0 auto;
+    background: var(--color-bg-2);
+    overflow-x: hidden;
   }
 
   .recipe-container {
@@ -143,7 +149,6 @@ const { Content } = await render(cookie);
   .title {
     font-family: var(--font-heading);
     font-size: clamp(2rem, 4vw, 2.75rem);
-    color: #fff;
     word-break: break-word;
   }
 
@@ -182,6 +187,7 @@ const { Content } = await render(cookie);
   }
 
   .instructions :global(p) {
+    color: var(--color-text);
     line-height: 1.8rem;
   }
 

@@ -161,6 +161,14 @@ const { current = "Default current" } = Astro.props;
 </script>
 
 <style>
+  button {
+    color: var(--color-button);
+  }
+
+  a {
+    color: var(--color-text);
+  }
+
   nav {
     position: fixed;
     top: 0;
@@ -216,7 +224,6 @@ const { current = "Default current" } = Astro.props;
     font-family: var(--font-heading);
     font-size: 1.25rem;
     font-weight: 700;
-    color: #fff;
     letter-spacing: 0.02em;
     cursor: pointer;
   }
@@ -238,7 +245,6 @@ const { current = "Default current" } = Astro.props;
     font-size: 0.875rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #ffffffa6;
     transition: color 0.2s;
     padding: 0.25rem 0;
   }
@@ -269,7 +275,6 @@ const { current = "Default current" } = Astro.props;
     background: none;
     border: none;
     cursor: pointer;
-    color: #fff;
     font-size: 1.5rem;
   }
 
@@ -305,7 +310,6 @@ const { current = "Default current" } = Astro.props;
     text-decoration: none;
     font-family: var(--font-body);
     font-size: 1rem;
-    color: #fff;
     text-align: left;
   }
 

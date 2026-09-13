@@ -3,11 +3,22 @@
   --font-heading: "'Playfair Display', Georgia, serif";
   --font-body: 'DM Sans', sans-serif;
 
+
   /* Colors */
   --color-bg: #181822;
+  --color-bg-2: #ffffff05;
   --color-bg-navbar: #0a0a0eeb;
+  --color-bg-tag: #c300ff14;
+
   --color-brand: #d900ff;
   --color-brand-2: #7fffd4;
+
+  --color-text-white: #ffffffff;
+  --color-text: #ffffffcc;
+  --color-text-title: #ffffffcc;
+  --color-text-secondary: #ffffffa6;
+
+  --color-button: #ffffffcc;
 }
 
 html {
@@ -22,8 +33,7 @@ body {
   min-height: 100vh;
 
   background: var(--color-bg);
-  color: #fff;
-
+  color: var(--color-text);
   font-family: var(--font-body);
 
   overflow-x: hidden;

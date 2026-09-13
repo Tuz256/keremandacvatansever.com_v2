@@ -87,7 +87,7 @@ const hasImage = Boolean(image);
     position: relative;
     display: block;
     text-decoration: none;
-    background: rgba(24, 24, 34, 0.9);
+    background: var(--color-bg);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
     padding: 1.1rem;
@@ -125,14 +125,16 @@ const hasImage = Boolean(image);
     flex: 1;
   }
 
+  h1,
+  h2,
   h3 {
-    color: #fff;
+    color: var(--color-text-title);
     margin-top: 0;
     margin-bottom: 0.5rem;
   }
 
   p {
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--color-text);
     margin-bottom: 1rem;
     text-align: left;
   }
@@ -179,12 +181,12 @@ const hasImage = Boolean(image);
 
   .tag {
     padding: 0.25rem 0.6rem;
-    background: #c300ff14;
+    background: var(--color-bg-tag);
     border: 1px solid #7fffd426;
     border-radius: 4px;
     font-family: var(--font-body);
     font-size: 0.72rem;
-    color: #fff;
+    color: var(--color-text);
     letter-spacing: 0.08em;
   }
 
