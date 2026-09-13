@@ -8,12 +8,21 @@ const { ingredients } = Astro.props;
 
 <div class="floating-panel" id="floatingIngredients">
   <div class="floating-card">
-    <div class="collapsed-label">
-      <span>M</span><span>A</span><span>L</span><span>Z</span><span>E</span
-      ><span>M</span><span>E</span><span>L</span><span>E</span><span>R</span>
-    </div>
+    <h2 class="collapsed-label">MALZEMELER</h2>
+
     <div class="floating-content">
-      <h2>Malzemeler</h2>
+      <div class="title-container">
+        <h2>Malzemeler</h2>
+
+        <button
+          class="close-panel"
+          type="button"
+          aria-label="Malzemeleri kapat"
+        >
+          ×
+        </button>
+      </div>
+
       <ul class="ingredients">
         {ingredients.map((item) => <li>{item}</li>)}
       </ul>
@@ -24,144 +33,117 @@ const { ingredients } = Astro.props;
 <script>
   function setupIngredientsBehavior() {
     const floatingPanel = document.getElementById("floatingIngredients");
-    if (!floatingPanel) return;
+
+    if (!floatingPanel) return () => {};
+
+    const closeButton = floatingPanel.querySelector(".close-panel");
 
     const SCROLL_THRESHOLD = 200;
 
-    let collapseTimer: number | null = null;
-    let scrollTimeout: number | null = null;
-
-    function startCollapseTimer() {
-      clearCollapseTimer();
-      collapseTimer = window.setTimeout(() => {
-        collapsePanel();
-      }, 3000);
-    }
-
-    function clearCollapseTimer() {
-      if (collapseTimer) {
-        clearTimeout(collapseTimer);
-        collapseTimer = null;
-      }
-    }
+    let ticking = false;
 
     function expandPanel() {
-      if (!floatingPanel) return;
-      floatingPanel.classList.remove("collapsed");
-      floatingPanel.classList.add("expanded");
+      floatingPanel!.classList.remove("collapsed");
+      floatingPanel!.classList.add("expanded");
     }
 
     function collapsePanel() {
-      if (!floatingPanel) return;
-      floatingPanel.classList.remove("expanded");
-      floatingPanel.classList.add("collapsed");
-      clearCollapseTimer();
+      floatingPanel!.classList.remove("expanded");
+      floatingPanel!.classList.add("collapsed");
     }
 
-    floatingPanel.addEventListener("click", (event) => {
+    function deactivatePanel() {
+      floatingPanel!.classList.remove("active", "expanded", "collapsed");
+    }
+
+    const handlePanelClick = (event: MouseEvent) => {
       if (!floatingPanel.classList.contains("active")) return;
 
       if (floatingPanel.classList.contains("collapsed")) {
         event.stopPropagation();
         expandPanel();
-        startCollapseTimer();
       }
-    });
+    };
 
-    floatingPanel.addEventListener("mouseenter", () => {
+    const handleMouseEnter = () => {
       if (floatingPanel.classList.contains("active")) {
-        clearCollapseTimer();
         expandPanel();
       }
-    });
+    };
 
-    floatingPanel.addEventListener("mouseleave", () => {
-      if (
-        floatingPanel.classList.contains("active") &&
-        floatingPanel.classList.contains("expanded")
-      ) {
-        startCollapseTimer();
-      }
-    });
+    const handleCloseClick = (event: Event) => {
+      event.stopPropagation();
+      collapsePanel();
+    };
 
-    document.addEventListener("click", (event) => {
-      const target = event.target as Node;
+    const handleScroll = () => {
+      if (ticking) return;
 
-      if (
-        !floatingPanel.classList.contains("active") ||
-        floatingPanel.contains(target)
-      ) {
-        return;
-      }
+      ticking = true;
 
-      if (floatingPanel.classList.contains("expanded")) {
-        collapsePanel();
-      }
-    });
+      window.requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        const isPastThreshold = scrollY > SCROLL_THRESHOLD;
+        const totalHeight = document.documentElement.scrollHeight;
+        const isAtBottom = window.innerHeight + scrollY >= totalHeight - 50;
 
-    window.addEventListener(
-      "scroll",
-      () => {
-        const isPastThreshold = window.scrollY > SCROLL_THRESHOLD;
 
-        if (isPastThreshold) {
-          if (!floatingPanel.classList.contains("active")) {
-            floatingPanel.classList.add("active");
-            collapsePanel();
-          }
-        } else {
-          floatingPanel.classList.remove("active");
-          clearCollapseTimer();
-          return;
+        if (isAtBottom || !isPastThreshold) {
+          deactivatePanel();
+        } else if (!floatingPanel.classList.contains("active")) {
+          floatingPanel.classList.add("active");
+          collapsePanel();
         }
 
-        if (floatingPanel.classList.contains("expanded")) {
-          if (scrollTimeout) window.clearTimeout(scrollTimeout);
+        ticking = false;
+      });
+    };
 
-          scrollTimeout = window.setTimeout(() => {
-            collapsePanel();
-          }, 100);
-        }
-      },
-      { passive: true },
-    );
+    floatingPanel.addEventListener("click", handlePanelClick);
+    floatingPanel.addEventListener("mouseenter", handleMouseEnter);
+    closeButton?.addEventListener("click", handleCloseClick);
+    window.addEventListener("scroll", handleScroll, { passive: true });
   }
 
   setupIngredientsBehavior();
+
   document.addEventListener("astro:page-load", setupIngredientsBehavior);
 </script>
 
 <style>
-  .ingredients {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  h1,
+  h2,
+  h3,
+  h4 :global(h1, h2, h3, h4) {
+    color: var(--color-text-white);
+    margin-top: 0;
+    margin-bottom: 1rem;
   }
 
-  .ingredients li {
-    font-size: clamp(0.7rem, 1vw, 1.1rem);
-    padding: 0.3rem 0.5rem;
-    border-radius: 12px;
-    background: var(--color-bg);
-    white-space: nowrap;
+  p {
+    color: var(--color-text);
+    margin: 0;
   }
 
   .floating-panel {
+    --panel-width-collapsed: 48px;
+    --panel-width-expanded: 300px;
+
     position: fixed;
     bottom: 1rem;
     right: 0;
+    z-index: 1000;
+
+    width: var(--panel-width-collapsed);
+
     transform: translateX(100%);
     opacity: 0;
     visibility: hidden;
-    z-index: 1000;
-    width: 48px;
+
     transition:
       transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-      opacity 0.3s ease,
       width 0.3s ease,
+      opacity 0.3s ease,
       visibility 0.3s ease;
   }
 
@@ -171,133 +153,256 @@ const { ingredients } = Astro.props;
     transform: translateX(0);
   }
 
+  .floating-panel.expanded {
+    width: var(--panel-width-expanded);
+  }
+
   .floating-card {
-    width: 100%;
     height: 22rem;
+
     padding: 1.25rem 0;
+
     background: var(--color-bg-navbar);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-right: none;
     border-radius: 12px 0 0 12px;
+
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.4);
+
     position: relative;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scrollbar-width: thin;
-    scrollbar-color: #ffffff59 transparent;
-    transition: all 0.3s ease;
+
+    overflow: hidden;
+
+    transition: padding 0.3s ease;
   }
 
   .floating-panel.collapsed {
-    width: 48px;
     cursor: pointer;
   }
 
   .floating-panel.collapsed .floating-card {
-    padding: 1.25rem 0;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .floating-panel.collapsed .floating-content {
-    display: none !important;
-  }
-
   .collapsed-label {
     display: none;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.2rem;
+
     font-weight: 700;
     font-size: 0.85rem;
-    color: #fff;
+
     user-select: none;
+
+    letter-spacing: 0.15em;
+
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
   }
 
   .floating-panel.collapsed .collapsed-label {
-    display: flex;
+    display: block;
   }
 
-  .floating-panel.expanded {
-    width: 300px;
+  .floating-content {
+    display: none;
   }
 
   .floating-panel.expanded .floating-content {
-    display: block !important;
-    opacity: 1;
-    visibility: visible;
-  }
+    display: flex;
+    flex-direction: column;
 
-  .floating-panel.expanded .floating-card {
-    padding: 1.25rem;
-    display: block;
+    height: 100%;
+
+    min-height: 0;
   }
 
   .floating-panel.expanded .collapsed-label {
     display: none;
   }
 
-  .floating-content {
-    transition: opacity 0.3s ease;
+  .floating-panel.expanded .floating-card {
+    padding: 1.25rem;
   }
 
-  .floating-content .ingredients {
-    max-height: 55vh;
+  .title-container {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    flex-shrink: 0;
+
+    margin-bottom: 1.2rem;
+  }
+
+  .title-container h2 {
+    margin: 0;
+  }
+
+  .close-panel {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    z-index: 2;
+
+    width: 32px;
+    height: 32px;
+
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    color: var(--color-text-white);
+
+    font-size: 2rem;
+    line-height: 1;
+
+    cursor: pointer;
+  }
+
+  .close-panel:hover {
+    opacity: 0.7;
+  }
+
+  .ingredients {
+    list-style: none;
+
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.5rem;
+    flex: 1;
+
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff59 transparent;
+  }
+
+  .ingredients li {
+    flex-shrink: 0;
+
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
+
+    padding: 0.3rem 0.5rem;
+
+    border-radius: 12px;
+
+    background: var(--color-bg);
+
+    white-space: nowrap;
   }
 
   @media (max-width: 576px) {
-    .ingredients li {
-      font-size: clamp(1rem, 2vw, 2rem);
-    }
-
     .floating-panel {
-      position: fixed;
+      --peek-height: 75px;
+
+      width: 100%;
+
       bottom: 0;
-      right: 0;
       left: 0;
+      right: 0;
+
       transform: translateY(100%);
-      width: 100% !important;
-      transition:
-        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-        opacity 0.3s ease !important;
     }
 
     .floating-panel.active {
       transform: translateY(0);
     }
 
-    .floating-card {
-      box-sizing: border-box;
-      height: auto;
-      max-width: 100%;
-      max-height: 30vh;
-      border-radius: 16px 16px 0 0;
-      box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.4);
-    }
-
     .floating-panel.collapsed {
-      width: 34px;
-      transform: translateY(calc(100% - 44px));
+      transform: translateY(calc(100% - var(--peek-height)));
     }
 
     .floating-panel.collapsed .floating-card {
-      padding: 0.85rem 1rem;
+      height: var(--peek-height);
+
+      padding: 1rem 1rem 3rem 1rem;
+
+      align-items: flex-start;
+
+      overflow: hidden;
     }
 
     .floating-panel.collapsed .collapsed-label {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      gap: 0.25rem;
+      writing-mode: horizontal-tb;
+
+      text-align: center;
+
       width: 100%;
+
+      line-height: 1;
     }
 
     .floating-panel.expanded {
+      width: 100%;
+
       transform: translateY(0);
+    }
+
+    .floating-card {
+      height: 30vh;
+      max-height: 30vh;
+
+      overflow: hidden;
+
+      border-radius: 16px 16px 0 0;
+
+      border: 2px solid rgba(255, 255, 255, 0.8);
+      border-bottom: none;
+
+      box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.4);
     }
 
     .floating-panel.expanded .floating-card {
       padding: 1.5rem 1.25rem;
+    }
+
+    .title-container {
+      flex-shrink: 0;
+
+      margin-bottom: 0.8rem;
+    }
+
+    .title-container h2 {
+      font-size: 1.25rem;
+    }
+
+    .floating-panel.expanded .close-panel {
+      width: 32px;
+      height: 32px;
+
+      font-size: 2rem;
+    }
+
+    .ingredients {
+      flex: 1;
+
+      min-height: 0;
+
+      overflow-y: auto;
+      overflow-x: hidden;
+
+      gap: 0.5rem;
+
+      padding-right: 0.25rem;
+    }
+
+    .ingredients li {
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
     }
   }
 </style>
