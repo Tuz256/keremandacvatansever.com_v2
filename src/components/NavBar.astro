@@ -1,7 +1,9 @@
 ---
-const PAGE_LINKS = [{ label: "TARİFLER", id: "Recipes", href: "/recipes" }];
+// Navigation link for external pages internal page sections
+const OTHER_PAGE_LINKS = [{ label: "TARİFLER", id: "Recipes", href: "/recipes" }];
 
-const SECTION_LINKS = [
+// Navigation link for in-page sections
+const INPAGE_LINKS = [
   { label: "HAKKIMDA", id: "About" },
   { label: "PROJELER", id: "Projects" },
 ];
@@ -10,16 +12,17 @@ const { current = "Default current" } = Astro.props;
 ---
 
 <nav id="navbar">
+  <!-- Left Logo-->
   <a href="/" id="logo-link">
     <span class="logo-text">
       KA<span class="brand-dot">.</span>
     </span>
   </a>
 
-  <!-- Page Navigation -->
+  <!-- Center Other Page Links (only in desktop) -->
   <div class="page-nav">
     {
-      PAGE_LINKS.map((item) => (
+      OTHER_PAGE_LINKS.map((item) => (
         <a
           href={item.href}
           class:list={["nav-link", { active: current === item.id }]}
@@ -31,11 +34,11 @@ const { current = "Default current" } = Astro.props;
     }
   </div>
 
-  <!-- Desktop Navigation -->
+  <!-- Right In-Page Sections Links (if in home page) -->
   {
     current === "Home" && (
       <div class="desktop-nav">
-        {SECTION_LINKS.map((item) => (
+        {INPAGE_LINKS.map((item) => (
           <a href={`#${item.id}`} class="nav-link" data-section={item.id}>
             {item.label}
             <span class="underline" />
@@ -45,18 +48,18 @@ const { current = "Default current" } = Astro.props;
     )
   }
 
-  <!-- Mobile Menu Button -->
+  <!-- Hamburger Menu Button (only in mobile) -->
   <button id="menu-btn" class="mobile-menu-btn" aria-label="Menüyü Aç/Kapat">
     <span class="icon-bar">☰</span>
   </button>
 
-  <!-- Mobile Navigation -->
+  <!-- Dropdown Navigation Menu (only in mobile) -->
   <div id="mobile-menu" class="mobile-menu hidden">
     {
+      // In-Page Sections Links (if in home page)
       current === "Home" && (
-        <>
           <div class="mobile-sections">
-            {SECTION_LINKS.map((link) => (
+            {INPAGE_LINKS.map((link) => (
               <a
                 href={`#${link.id}`}
                 class="mobile-nav-link"
@@ -68,13 +71,14 @@ const { current = "Default current" } = Astro.props;
           </div>
 
           <div class="mobile-divider" />
-        </>
+
       )
     }
 
+    <!-- Other Page Links (only in home page) -->
     <div class="mobile-pages">
       {
-        PAGE_LINKS.map((item) => (
+        OTHER_PAGE_LINKS.map((item) => (
           <a
             href={item.href}
             class:list={["mobile-nav-link", { active: current === item.id }]}
@@ -88,14 +92,17 @@ const { current = "Default current" } = Astro.props;
 </nav>
 
 <script>
+  // DOM element selections
   const navbar = document.getElementById("navbar");
   const menuBtn = document.getElementById("menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");
+  const logoLink = document.getElementById("logo-link");
   const iconBar = menuBtn?.querySelector(".icon-bar");
   const navLinks = document.querySelectorAll("[data-section]");
-  const logoLink = document.getElementById("logo-link");
 
+  // Update navbar styling and highlight active section links
   const onScroll = () => {
+    // Add backdrop when scrolled more than threshold
     if (window.scrollY > 40) {
       navbar?.classList.add("scrolled");
     } else {
@@ -104,6 +111,7 @@ const { current = "Default current" } = Astro.props;
 
     const scrollPosition = window.scrollY + 250;
 
+    // Detect which section is currently in viewport and update active state
     navLinks.forEach((link) => {
       const sectionId = link.getAttribute("data-section");
       if (!sectionId) return;
@@ -122,9 +130,11 @@ const { current = "Default current" } = Astro.props;
     });
   };
 
+  // Attach scroll event listener
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  // Toggle mobile menu visibility and icon state
   menuBtn?.addEventListener("click", () => {
     const isHidden = mobileMenu?.classList.toggle("hidden");
     if (iconBar) {
@@ -132,6 +142,7 @@ const { current = "Default current" } = Astro.props;
     }
   });
 
+  // Enable smooth scrolling for section links and close mobile menu on click
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
@@ -142,6 +153,7 @@ const { current = "Default current" } = Astro.props;
         targetSection.scrollIntoView({ behavior: "smooth" });
       }
 
+      // Close mobile menu if open
       if (!mobileMenu?.classList.contains("hidden")) {
         mobileMenu?.classList.add("hidden");
         if (iconBar) iconBar.textContent = "☰";
@@ -149,6 +161,7 @@ const { current = "Default current" } = Astro.props;
     });
   });
 
+  // Scroll smoothly to top when logo is clicked while already on the home page
   logoLink?.addEventListener("click", (e) => {
     if (
       window.location.pathname === "/" ||
@@ -161,6 +174,7 @@ const { current = "Default current" } = Astro.props;
 </script>
 
 <style>
+
   button {
     color: var(--color-button);
   }
@@ -182,7 +196,6 @@ const { current = "Default current" } = Astro.props;
     align-items: center;
     justify-content: space-between;
 
-    position: fixed;
     background: transparent;
     backdrop-filter: none;
     transition: all 0.35s ease;
@@ -206,16 +219,6 @@ const { current = "Default current" } = Astro.props;
     animation: underlineIn 0.3s ease forwards;
   }
 
-  @keyframes underlineIn {
-    from {
-      transform: scaleX(0);
-    }
-
-    to {
-      transform: scaleX(1);
-    }
-  }
-
   #logo-link {
     text-decoration: none;
   }
@@ -232,7 +235,6 @@ const { current = "Default current" } = Astro.props;
     color: var(--color-brand);
   }
 
-  /* Desktop Nav */
   .desktop-nav {
     display: flex;
     gap: 2rem;
@@ -254,6 +256,10 @@ const { current = "Default current" } = Astro.props;
     color: var(--color-brand);
   }
 
+  .nav-link.active .underline {
+    animation: underlineIn 0.3s ease forwards;
+  }
+
   .underline {
     position: absolute;
     left: 0;
@@ -265,11 +271,6 @@ const { current = "Default current" } = Astro.props;
     transform-origin: center;
   }
 
-  .nav-link.active .underline {
-    animation: underlineIn 0.3s ease forwards;
-  }
-
-  /* Mobile Nav */
   .mobile-menu-btn {
     display: none;
     background: none;
@@ -315,6 +316,16 @@ const { current = "Default current" } = Astro.props;
 
   .mobile-nav-link.active {
     color: var(--color-brand);
+  }
+
+  @keyframes underlineIn {
+    from {
+      transform: scaleX(0);
+    }
+
+    to {
+      transform: scaleX(1);
+    }
   }
 
   @media (max-width: 640px) {
