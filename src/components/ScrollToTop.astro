@@ -29,6 +29,27 @@ const mobileLeftValue = isLeft ? "20px" : "auto";
   </svg>
 </button>
 
+<script>
+  const button = document.querySelector("#scroll-to-top");
+
+  if (button) {
+    const toggleVisibility = () => {
+      button.classList.toggle("visible", window.scrollY > 300);
+    };
+
+    // 
+    window.addEventListener("scroll", toggleVisibility);
+    button.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
+
+    toggleVisibility();
+  }
+</script>
+
 <style
   define:vars={{
     rightValue,
@@ -84,24 +105,3 @@ const mobileLeftValue = isLeft ? "20px" : "auto";
     }
   }
 </style>
-
-<script>
-  const button = document.querySelector("#scroll-to-top");
-
-  if (button) {
-    const toggleVisibility = () => {
-      button.classList.toggle("visible", window.scrollY > 300);
-    };
-
-    window.addEventListener("scroll", toggleVisibility);
-
-    button.addEventListener("click", () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    });
-
-    toggleVisibility();
-  }
-</script>
