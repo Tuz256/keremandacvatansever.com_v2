@@ -1,8 +1,10 @@
+/* Default attributes for website */
+/* ------------------------------ */
+
 :root {
   /* Fonts */
   --font-heading: "'Playfair Display', Georgia, serif";
   --font-body: 'DM Sans', sans-serif;
-
 
   /* Colors */
   --color-bg: #181822;
@@ -13,10 +15,10 @@
   --color-brand: #d900ff;
   --color-brand-2: #7fffd4;
 
-  --color-text-white: #ffffffff;
   --color-text: #ffffffcc;
-  --color-text-title: #ffffffcc;
+  --color-text-white: #ffffffff;
   --color-text-secondary: #ffffffa6;
+  --color-text-title: #ffffffcc;
 
   --color-button: #ffffffcc;
 }
@@ -24,6 +26,7 @@
 html {
   margin: 0;
   padding: 0;
+
   scroll-behavior: smooth;
 }
 
@@ -32,9 +35,11 @@ body {
   padding: 0;
   min-height: 100vh;
 
+  font-family: var(--font-body);
   background: var(--color-bg);
   color: var(--color-text);
-  font-family: var(--font-body);
 
   overflow-x: hidden;
 }
+
+/* ------------------------------ */
