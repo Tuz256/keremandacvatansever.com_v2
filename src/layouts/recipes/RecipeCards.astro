@@ -16,6 +16,7 @@ const allCookies = await getCollection("cookies");
         {
           allCookies.map((cookie, index) => (
             <Card
+              forceTwoColumn={false}
               title={cookie.data.title}
               description={cookie.data.description}
               tags={cookie.data.tags}
@@ -72,7 +73,7 @@ const allCookies = await getCollection("cookies");
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
     justify-content: center;
     gap: 1.5rem;
 
