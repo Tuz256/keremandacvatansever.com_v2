@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 
 interface Props {
+  forceTwoColumn?: boolean;
   title: string;
   description?: string;
   link?: string;
@@ -13,10 +14,11 @@ interface Props {
 }
 
 const {
-  title,
-  description,
-  link,
-  tags = [],
+  forceTwoColumn = false,
+  title = "Default Title",
+  description = "Default Description",
+  link = "/",
+  tags = ["Default Tag"],
   emoji,
   image,
   color,
@@ -30,17 +32,17 @@ const hasImage = Boolean(image);
   href={link || "#"}
   target="_self"
   rel="noopener noreferrer"
-  class="card"
+  class:list={["card", { "force-two-column": forceTwoColumn }]}
   style={`--delay: ${delay}s;`}
 >
-  <div class={hasImage ? "two-column" : "card-header"}>
+  <div class={`card-header ${hasImage ? "two-column" : ""}`}>
     <div class="content">
       <h3>{title}</h3>
       {description && <p>{description}</p>}
     </div>
 
     {
-      image && (
+      image && !emoji && (
         <div
           class="image-wrapper"
           style={color ? `background-color: ${color};` : ""}
@@ -190,10 +192,43 @@ const hasImage = Boolean(image);
     letter-spacing: 0.08em;
   }
 
+  .card-header,
+  .two-column {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .image-wrapper {
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 3 / 2;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+
   @media (max-width: 768px) {
-    .image-wrapper {
-      width: 165px;
-      height: 110px;
+    .card:not(.force-two-column) .card-header,
+    .card:not(.force-two-column) .two-column {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+    }
+
+    .card:not(.force-two-column) .image-wrapper {
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      margin-left: 0;
+      margin-bottom: 1rem;
     }
 
     .card:hover {
