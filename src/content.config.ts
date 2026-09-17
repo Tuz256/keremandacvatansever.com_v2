@@ -3,7 +3,19 @@ import { z } from 'astro/zod';
 import { glob } from "astro/loaders";
 
 const cookies = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/cookies" }),
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/cookie" }),
+  schema: ({ image }) => z.object({
+    title: z.string(),
+    description: z.string(),
+    tags: z.array(z.string()),
+    color: z.string().optional(),
+    image: image(),
+    ingredients: z.array(z.string()),
+  }),
+});
+
+const pastas = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/pasta" }),
   schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string(),
@@ -16,4 +28,5 @@ const cookies = defineCollection({
 
 export const collections = {
   cookies,
+  pastas,
 };

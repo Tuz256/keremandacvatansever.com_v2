@@ -6,24 +6,35 @@ import ScrollToTop from "../../components/ScrollToTop.astro";
 import Drawer from "../../components/Drawer.astro";
 
 export async function getStaticPaths() {
-  const cookies = await getCollection("cookies");
-  return cookies.map((cookie: CollectionEntry<"cookies">) => ({
-    params: { id: cookie.id },
-    props: { cookie },
+  const [cookies, pastas] = await Promise.all([
+    getCollection("cookies"),
+    getCollection("pastas"),
+  ]);
+
+  const cookiePaths = cookies.map((cookie) => ({
+    params: { category: "cookie", id: cookie.id },
+    props: { recipe: cookie },
   }));
+
+  const pastaPaths = pastas.map((pasta) => ({
+    params: { category: "pasta", id: pasta.id },
+    props: { recipe: pasta },
+  }));
+
+  return [...cookiePaths, ...pastaPaths];
 }
 
 interface Props {
-  cookie: CollectionEntry<"cookies">;
+  recipe: CollectionEntry<"cookies"> | CollectionEntry<"pastas">;
 }
 
-const { cookie } = Astro.props;
-const { Content } = await render(cookie);
+const { recipe } = Astro.props;
+const { Content } = await render(recipe);
 ---
 
 <MainLayout
-  title={cookie.data.title + " - KA."}
-  description={cookie.data.description}
+  title={`${recipe.data.title} - KA.`}
+  description={recipe.data.description}
   current="Recipes"
 >
   <div class="Main">
@@ -32,16 +43,17 @@ const { Content } = await render(cookie);
         <div class="hero-wrapper" id="heroWrapper">
           <div class="left">
             <div class="title-wrapper">
-              <h1 class="title">{cookie.data.title}</h1>
-              <p>{cookie.data.description}</p>
+              <h1 class="title">{recipe.data.title}</h1>
+              <p>{recipe.data.description}</p>
             </div>
             <Image
-              src={cookie.data.image}
-              alt={cookie.data.title}
+              src={recipe.data.image}
+              alt={recipe.data.title}
               class="hero-image"
-              width={1440}
-              height={900}
+              width={1000}
+              height={562}
               format="webp"
+              quality="high"
               loading="eager"
               fetchpriority="high"
             />
@@ -51,7 +63,7 @@ const { Content } = await render(cookie);
             <div class="ingredients-wrapper">
               <h2>Malzemeler</h2>
               <ul class="ingredients">
-                {cookie.data.ingredients.map((item) => <li>{item}</li>)}
+                {recipe.data.ingredients.map((item: string) => <li>{item}</li>)}
               </ul>
             </div>
           </div>
@@ -63,7 +75,7 @@ const { Content } = await render(cookie);
       </article>
     </section>
 
-    <Drawer ingredients={cookie.data.ingredients} />
+    <Drawer ingredients={recipe.data.ingredients} />
     <ScrollToTop position="Left" bottom="85px" />
   </div>
 </MainLayout>
