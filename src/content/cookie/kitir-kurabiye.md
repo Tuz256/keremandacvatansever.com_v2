@@ -3,7 +3,7 @@ title: "Kıtır Kurabiye"
 description: "Az malzemeyle, nişastalı kıtır kıtır kurabiye"
 tags: ["tatlı", "kıtır", "nişastalı", "sıvı-yağ"]
 color: "#c8f0d0"
-image: "../../images/recipes/cookies/kitir_kurabiye/kitir_kurabiye_hero.webp"
+image: "../../images/recipes/cookie/kitir_kurabiye/hero.webp"
 prepTime: "15 Dakika"
 ingredients:
 - 1,5 çay bardağı un
@@ -58,20 +58,20 @@ ingredients:
 
 - Eş parçalara ayır. Avuç içinde azıcık yuvarla. Eğer çok kıtır olmasını istiyorsan çok hafif bastırarak yassılaştır. Fazla yapma çünkü sıvı yağ kullanıldığından dolayı pişme anında kendiliğinden biraz da olsa yayılacaktır. Birbirlerinden iki üç parmak uzaklığında tepsiye diz.
 
-![Fırın Tepsisine Dizilmiş](../../images/recipes/cookies/kitir_kurabiye/kitir_kurabiye_tepsi.webp)
+![Fırın Tepsisine Dizilmiş](../../images/recipes/cookie/kitir_kurabiye/tepsi.webp)
 *Kurabiyelerin fırın tepsisine dizilmiş hali.*
 
 - Isınmış olan fırında yaklaşık 12 dakika pişmeye bırak. Ardından her bir dakikada bir olacak şekilde fırın kapağını açarak üstlerinin kızarıklığını ve çatlaklığını kontrol et.
 
-![Fırında Pişmiş Hali](../../images/recipes/cookies/kitir_kurabiye/kitir_kurabiye_firin.webp)
+![Fırında Pişmiş Hali](../../images/recipes/cookie/kitir_kurabiye/firin.webp)
 *Kurabiyelerin fırında pişmiş, üstleri çatlamış görünümleri.*
 
 - Kurabiyelerin üst kısımları az miktarda kızardığında ve üstlerinde çatlaklar oluştuğunda fırından çıkar ve soğumaya bırak. Kurabiyeler kendi sıcaklıklarıyla bir süre daha pişecektir.
 
-![Fırın Tepsisine Dizilmiş](../../images/recipes/cookies/kitir_kurabiye/kitir_kurabiye_firin_sonrasi.webp)
+![Fırın Tepsisine Dizilmiş](../../images/recipes/cookie/kitir_kurabiye/firin_sonrasi.webp)
 *Fırından çıkmış, sıcak halleri.*
 
 - Afiyet olsun!
 
-![Servis Tabağı](../../images/recipes/cookies/kitir_kurabiye/kitir_kurabiye_servis.webp)
+![Servis Tabağı](../../images/recipes/cookie/kitir_kurabiye/servis.webp)
 *Afiyet olsun.*
