@@ -1,7 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import Card from "../../components/Card.astro";
+
 const allCookies = await getCollection("cookies");
+const allPastas = await getCollection("pastas");
 ---
 
 <section id="Recipes">
@@ -22,7 +24,29 @@ const allCookies = await getCollection("cookies");
               tags={cookie.data.tags}
               color={cookie.data.color}
               image={cookie.data.image}
-              link={`/cookies/${cookie.id}`}
+              link={`/cookie/${cookie.id}`}
+              delay={index * 0.1}
+            />
+          ))
+        }
+      </div>
+
+      <div class="title-container">
+        <div class="title-emoji-wrapper">🍜</div>
+        <h2 class="title">Makarna</h2>
+      </div>
+
+      <div class="grid">
+        {
+          allPastas.map((pasta, index) => (
+            <Card
+              forceTwoColumn={false}
+              title={pasta.data.title}
+              description={pasta.data.description}
+              tags={pasta.data.tags}
+              color={pasta.data.color}
+              image={pasta.data.image}
+              link={`/pasta/${pasta.id}`}
               delay={index * 0.1}
             />
           ))
