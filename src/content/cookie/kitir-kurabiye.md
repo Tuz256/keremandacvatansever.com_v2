@@ -2,7 +2,6 @@
 title: "Kıtır Kurabiye"
 description: "Az malzemeyle, nişastalı kıtır kıtır kurabiye"
 tags: ["tatlı", "kıtır", "nişastalı", "sıvı-yağ"]
-color: "#c8f0d0"
 image: "../../images/recipes/cookie/kitir_kurabiye/hero.webp"
 prepTime: "15 Dakika"
 ingredients:
