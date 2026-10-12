@@ -2,8 +2,9 @@
 import { getCollection } from "astro:content";
 import Card from "../../components/Card.astro";
 
-const allCookies = await getCollection("cookies");
+const allEggs = await getCollection("eggs");
 const allPastas = await getCollection("pastas");
+const allCookies = await getCollection("cookies");
 ---
 
 <section id="Recipes">
@@ -11,20 +12,20 @@ const allPastas = await getCollection("pastas");
     <div class="category">
       <div class="title-container">
         <div class="title-emoji-wrapper">🍪</div>
-        <h2 class="title">Kurabiye</h2>
+        <h2 class="title">Kahvaltılık</h2>
       </div>
 
       <div class="grid">
         {
-          allCookies.map((cookie, index) => (
+          allEggs.map((egg, index) => (
             <Card
               forceTwoColumn={false}
-              title={cookie.data.title}
-              description={cookie.data.description}
-              tags={cookie.data.tags}
-              color={cookie.data.color}
-              image={cookie.data.image}
-              link={`/cookie/${cookie.id}`}
+              title={egg.data.title}
+              description={egg.data.description}
+              tags={egg.data.tags}
+              color={egg.data.color}
+              image={egg.data.image}
+              link={`/egg/${egg.id}`}
               delay={index * 0.1}
             />
           ))
@@ -47,6 +48,28 @@ const allPastas = await getCollection("pastas");
               color={pasta.data.color}
               image={pasta.data.image}
               link={`/pasta/${pasta.id}`}
+              delay={index * 0.1}
+            />
+          ))
+        }
+      </div>
+
+      <div class="title-container">
+        <div class="title-emoji-wrapper">🍪</div>
+        <h2 class="title">Kurabiye</h2>
+      </div>
+
+      <div class="grid">
+        {
+          allCookies.map((cookie, index) => (
+            <Card
+              forceTwoColumn={false}
+              title={cookie.data.title}
+              description={cookie.data.description}
+              tags={cookie.data.tags}
+              color={cookie.data.color}
+              image={cookie.data.image}
+              link={`/cookie/${cookie.id}`}
               delay={index * 0.1}
             />
           ))
