@@ -6,14 +6,15 @@ import ScrollToTop from "../../components/ScrollToTop.astro";
 import Drawer from "../../components/Drawer.astro";
 
 export async function getStaticPaths() {
-  const [cookies, pastas] = await Promise.all([
-    getCollection("cookies"),
+  const [eggs, pastas, cookies] = await Promise.all([
+    getCollection("eggs"),
     getCollection("pastas"),
+    getCollection("cookies"),
   ]);
 
-  const cookiePaths = cookies.map((cookie) => ({
-    params: { category: "cookie", id: cookie.id },
-    props: { recipe: cookie },
+  const eggPaths = eggs.map((egg) => ({
+    params: { category: "egg", id: egg.id },
+    props: { recipe: egg },
   }));
 
   const pastaPaths = pastas.map((pasta) => ({
@@ -21,7 +22,11 @@ export async function getStaticPaths() {
     props: { recipe: pasta },
   }));
 
-  return [...cookiePaths, ...pastaPaths];
+  const cookiePaths = cookies.map((cookie) => ({
+    params: { category: "cookie", id: cookie.id },
+    props: { recipe: cookie },
+  }));
+  return [...eggPaths, ...pastaPaths, ...cookiePaths];
 }
 
 interface Props {
