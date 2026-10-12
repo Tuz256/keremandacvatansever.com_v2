@@ -1,9 +1,9 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
-import MainLayout from "../../layouts/MainLayout.astro";
-import ScrollToTop from "../../components/ScrollToTop.astro";
-import Drawer from "../../components/Drawer.astro";
+import MainLayout from "../../../layouts/MainLayout.astro";
+import ScrollToTop from "../../../components/ScrollToTop.astro";
+import Drawer from "../../../components/Drawer.astro";
 
 export async function getStaticPaths() {
   const [eggs, pastas, cookies] = await Promise.all([
