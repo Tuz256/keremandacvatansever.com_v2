@@ -25,7 +25,7 @@ const allCookies = await getCollection("cookies");
               tags={egg.data.tags}
               color={egg.data.color}
               image={egg.data.image}
-              link={`/egg/${egg.id}`}
+              link={`/recipes/egg/${egg.id}`}
               delay={index * 0.1}
             />
           ))
@@ -47,7 +47,7 @@ const allCookies = await getCollection("cookies");
               tags={pasta.data.tags}
               color={pasta.data.color}
               image={pasta.data.image}
-              link={`/pasta/${pasta.id}`}
+              link={`/recipes/pasta/${pasta.id}`}
               delay={index * 0.1}
             />
           ))
@@ -69,7 +69,7 @@ const allCookies = await getCollection("cookies");
               tags={cookie.data.tags}
               color={cookie.data.color}
               image={cookie.data.image}
-              link={`/cookie/${cookie.id}`}
+              link={`/recipes/cookie/${cookie.id}`}
               delay={index * 0.1}
             />
           ))
