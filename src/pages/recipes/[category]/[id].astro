@@ -99,9 +99,8 @@ const { Content } = await render(recipe);
   h1,
   h2,
   h3,
-  h4 :global(h1, h2, h3, h4) {
+  h4 {
     color: var(--color-text-title);
-
     margin-top: 0;
     margin-bottom: 1rem;
   }
@@ -160,7 +159,7 @@ const { Content } = await render(recipe);
   .title-wrapper {
     padding: 1.25rem;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--color-bg-2);
   }
 
   .title {
@@ -173,7 +172,7 @@ const { Content } = await render(recipe);
     width: 100%;
     height: 100%;
     padding: 1.25rem;
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--color-bg-2);
     border-radius: 10px;
   }
 
@@ -200,7 +199,7 @@ const { Content } = await render(recipe);
   .instructions {
     font-family: var(--font-body);
     border-radius: 10px;
-    padding: 4rem 2rem 4rem 2rem;
+    padding: 4rem 2rem;
   }
 
   .instructions :global(p) {
@@ -208,7 +207,11 @@ const { Content } = await render(recipe);
     line-height: 1.8rem;
   }
 
-  .instructions :global(ul, ol) {
+  .instructions :global(ul) {
+    padding-left: 1rem;
+  }
+
+  .instructions :global(ol) {
     padding-left: 1rem;
   }
 
@@ -220,12 +223,13 @@ const { Content } = await render(recipe);
     max-height: 500px;
     object-fit: cover;
     margin-top: 5rem;
-    justify-self: center;
+    margin-left: auto;
+    margin-right: auto;
     content-visibility: auto;
     decoding: async;
   }
 
-  .instructions :global(p img + em) {
+  .instructions :global(em) {
     display: block;
     text-align: center;
     margin-top: 0.5rem;
@@ -239,7 +243,7 @@ const { Content } = await render(recipe);
     }
 
     .instructions {
-      padding: 1.5rem 1.1rem 1.5rem 1.1rem;
+      padding: 1.5rem 0.6rem;
     }
 
     .instructions :global(p) {
@@ -252,12 +256,8 @@ const { Content } = await render(recipe);
       margin-top: 2rem;
     }
 
-    .instructions :global(p img + em) {
-      display: block;
-      text-align: center;
-      margin-top: 0.5rem;
+    .instructions :global(em) {
       margin-bottom: 2rem;
-      font-style: italic;
     }
 
     .left,
