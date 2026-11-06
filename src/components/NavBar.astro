@@ -1,6 +1,10 @@
 ---
 // Navigation link for external pages internal page sections
-const OTHER_PAGE_LINKS = [{ label: "TARİFLER", id: "Recipes", href: "/recipes" }];
+const OTHER_PAGE_LINKS = [{ 
+  label: "TARİFLER",
+  id: "Recipes",
+  href: "/recipes" },
+];
 
 // Navigation link for in-page sections
 const INPAGE_LINKS = [
@@ -47,6 +51,20 @@ const { current = "Default current" } = Astro.props;
       </div>
     )
   }
+
+    <!-- Right Turn Back to Main Recipes Page Button (if in one of the recipe page) -->
+  <!-- {
+    current === "Recipe" && (
+      <div class="desktop-nav">
+
+
+
+<button id="back" aria-label="Bir Önceki Sayfaya Dön" type="button">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17l-5-5 5-5M18 17l-5-5 5-5"/></svg>
+</button>
+      </div>
+    )
+  } -->
 
   <!-- Hamburger Menu Button (only in mobile) -->
   <button id="menu-btn" class="mobile-menu-btn" aria-label="Menüyü Aç/Kapat">
@@ -206,6 +224,41 @@ const { current = "Default current" } = Astro.props;
     backdrop-filter: blur(12px);
   }
 
+  /* #back {
+    position: fixed;
+    display: none;
+    bottom: var(--bottomValue);
+    right: var(--rightValue);
+    left: var(--leftValue);
+
+    width: 60px;
+    height: 60px;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2rem;
+    border-radius: 50%;
+    border: none;
+
+    background-color: var(--color-bg-navbar);
+    color: var(--color-brand);
+
+    cursor: pointer;
+    box-shadow: 0 2px 6px #0000004d;
+
+    z-index: 999;
+  }
+
+  #back.visible {
+    display: flex;
+  }
+
+  #back svg {
+    width: 28px;
+    height: 28px;
+  } */
+
   .page-nav {
     position: absolute;
     left: 50%;
@@ -244,11 +297,15 @@ const { current = "Default current" } = Astro.props;
     position: relative;
     text-decoration: none;
     font-family: var(--font-body);
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     transition: color 0.2s;
     padding: 0.25rem 0;
+  }
+
+  .page-nav .nav-link{
+    font-size: 1.1rem;
   }
 
   .nav-link:hover,
@@ -310,8 +367,12 @@ const { current = "Default current" } = Astro.props;
   .mobile-nav-link {
     text-decoration: none;
     font-family: var(--font-body);
-    font-size: 1rem;
+    font-size: 0.8rem;
     text-align: left;
+  }
+
+  .mobile-pages .mobile-nav-link{
+    font-size: 1rem;
   }
 
   .mobile-nav-link.active {
