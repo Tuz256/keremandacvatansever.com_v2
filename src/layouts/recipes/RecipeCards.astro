@@ -9,72 +9,71 @@ const allCookies = await getCollection("cookies");
 
 <section id="Recipes">
   <div class="recipes-container">
-    <div class="category">
-      <div class="title-container">
-        <div class="title-emoji-wrapper">🍳🥪</div>
-        <h2 class="title">Kahvaltılık</h2>
-      </div>
+    <!-- <div class="category"> -->
+    <div class="title-container">
+      <div class="title-emoji-wrapper">🍳🥪</div>
+      <h2 class="title">Kahvaltılık</h2>
+    </div>
 
-      <div class="grid">
-        {
-          allEggs.map((egg, index) => (
-            <Card
-              forceTwoColumn={false}
-              title={egg.data.title}
-              description={egg.data.description}
-              tags={egg.data.tags}
-              color={egg.data.color}
-              image={egg.data.image}
-              link={`/recipes/egg/${egg.id}`}
-              delay={index * 0.1}
-            />
-          ))
-        }
-      </div>
+    <div class="grid">
+      {
+        allEggs.map((egg, index) => (
+          <Card
+            forceTwoColumn={false}
+            title={egg.data.title}
+            description={egg.data.description}
+            tags={egg.data.tags}
+            color={egg.data.color}
+            image={egg.data.image}
+            link={`/recipes/egg/${egg.id}`}
+            delay={index * 0.1}
+          />
+        ))
+      }
+    </div>
 
-      <div class="title-container">
-        <div class="title-emoji-wrapper">🍜</div>
-        <h2 class="title">Makarna</h2>
-      </div>
+    <div class="title-container">
+      <div class="title-emoji-wrapper">🍜</div>
+      <h2 class="title">Makarna</h2>
+    </div>
 
-      <div class="grid">
-        {
-          allPastas.map((pasta, index) => (
-            <Card
-              forceTwoColumn={false}
-              title={pasta.data.title}
-              description={pasta.data.description}
-              tags={pasta.data.tags}
-              color={pasta.data.color}
-              image={pasta.data.image}
-              link={`/recipes/pasta/${pasta.id}`}
-              delay={index * 0.1}
-            />
-          ))
-        }
-      </div>
+    <div class="grid">
+      {
+        allPastas.map((pasta, index) => (
+          <Card
+            forceTwoColumn={false}
+            title={pasta.data.title}
+            description={pasta.data.description}
+            tags={pasta.data.tags}
+            color={pasta.data.color}
+            image={pasta.data.image}
+            link={`/recipes/pasta/${pasta.id}`}
+            delay={index * 0.1}
+          />
+        ))
+      }
+    </div>
 
-      <div class="title-container">
-        <div class="title-emoji-wrapper">🍪</div>
-        <h2 class="title">Kurabiye</h2>
-      </div>
+    <div class="title-container">
+      <div class="title-emoji-wrapper">🍪</div>
+      <h2 class="title">Kurabiye</h2>
+    </div>
 
-      <div class="grid">
-        {
-          allCookies.map((cookie, index) => (
-            <Card
-              forceTwoColumn={false}
-              title={cookie.data.title}
-              description={cookie.data.description}
-              tags={cookie.data.tags}
-              color={cookie.data.color}
-              image={cookie.data.image}
-              link={`/recipes/cookie/${cookie.id}`}
-              delay={index * 0.1}
-            />
-          ))
-        }
-      </div>
+    <div class="grid">
+      {
+        allCookies.map((cookie, index) => (
+          <Card
+            forceTwoColumn={false}
+            title={cookie.data.title}
+            description={cookie.data.description}
+            tags={cookie.data.tags}
+            color={cookie.data.color}
+            image={cookie.data.image}
+            link={`/recipes/cookie/${cookie.id}`}
+            delay={index * 0.1}
+          />
+        ))
+      }
     </div>
   </div>
 </section>
@@ -92,8 +91,7 @@ const allCookies = await getCollection("cookies");
   }
 
   section {
-    padding: 7rem 0.8rem;
-    margin: 0 auto;
+    padding: 7rem 2rem;
     background: var(--color-bg);
   }
 
@@ -120,13 +118,9 @@ const allCookies = await getCollection("cookies");
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(415px, 100%), 1fr));
     justify-content: center;
     gap: 1.5rem;
-
-    animation: fadeInUp 0.8s ease forwards;
-    animation-timeline: view();
-    animation-range: entry 10% cover 30%;
   }
 
   @keyframes fadeInUp {
@@ -140,7 +134,7 @@ const allCookies = await getCollection("cookies");
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .recipes-container {
       width: 100%;
     }

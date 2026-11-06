@@ -13,10 +13,10 @@ import Card from "../../components/Card.astro";
             forceTwoColumn={true}
             title={item.title}
             description={item.description}
-            link={item.link}
             tags={item.tags}
-            emoji={item.emoji}
             color={item.color}
+            emoji={item.emoji}
+            link={item.link}
             delay={index * 0.1}
           />
         ))
@@ -39,7 +39,7 @@ import Card from "../../components/Card.astro";
 
   section {
     padding: 7rem 2rem;
-    background: var(--color-bg-2);
+    background: var(--color-bg);
   }
 
   .grid {

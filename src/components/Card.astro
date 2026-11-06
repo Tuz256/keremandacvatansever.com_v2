@@ -85,6 +85,20 @@ const hasImage = Boolean(image);
 </a>
 
 <style>
+  h1,
+  h2,
+  h3 {
+    color: var(--color-text-title);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
   .card {
     position: relative;
     display: block;
@@ -106,6 +120,7 @@ const hasImage = Boolean(image);
   .card:hover {
     transform: scale(1.4);
     background-color: var(--color-bg-2-selected);
+    backdrop-filter: blur(6px);
     border: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
     z-index: 2;
@@ -115,6 +130,7 @@ const hasImage = Boolean(image);
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 1rem;
   }
 
   .two-column {
@@ -126,20 +142,6 @@ const hasImage = Boolean(image);
 
   .content {
     flex: 1;
-  }
-
-  h1,
-  h2,
-  h3 {
-    color: var(--color-text-title);
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-  }
-
-  p {
-    color: var(--color-text);
-    margin-bottom: 1rem;
-    text-align: left;
   }
 
   .emoji-wrapper {
@@ -157,7 +159,7 @@ const hasImage = Boolean(image);
 
   .image-wrapper {
     width: 100%;
-    max-width: 200px;
+    max-width: 280px;
     aspect-ratio: 3 / 2;
     height: auto;
     border-radius: 10px;
@@ -191,29 +193,6 @@ const hasImage = Boolean(image);
     font-size: 0.72rem;
     color: var(--color-text);
     letter-spacing: 0.08em;
-  }
-
-  .card-header,
-  .two-column {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .image-wrapper {
-    width: 100%;
-    max-width: 200px;
-    aspect-ratio: 3 / 2;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    flex-shrink: 0;
-    transition: all 0.3s ease;
   }
 
   @media (max-width: 768px) {
