@@ -38,7 +38,7 @@ const PROJECTS = [
   {
     id: 5,
     title: "Endüstriyel Makine Takip Sistemi",
-    description: "İşleri takip etmek için sürükle-bırak olarak çalışan bir site.",
+    description: "Makine verilerine göre önceden belirlenmiş eylemleri gerçekleştiren otomasyon sistemi.",
     link: "https://github.com/Tuz256/Industrial_IoT_Monitoring_System",
     tags: ["ESP32", "FreeRTOS", "MQTT", "JSON", "Wi-Fi", "C++", "Eclipse Mosquitto"],
     color: "#8569b6",
