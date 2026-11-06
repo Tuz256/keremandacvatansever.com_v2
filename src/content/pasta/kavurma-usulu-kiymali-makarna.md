@@ -51,10 +51,12 @@ ingredients:
 
 - Tencerenin altını orta derecede aç. Soğanları küp küp doğra ve ısınmış tencereye ekle ve ara sıra karıştır.
 
+- Soğanlar piştikçe şeffaflaşacaktır. Hafif şeffaflaştıklarında yağı ve kıymayı ekle.
+
 ![Pişmiş Soğan](../../images/recipes/pasta/kavurma_usulu_kiymali_makarna/asama-1.webp)
 *Soğanların pişmiş hali.*
 
-- Soğanlar piştikçe şeffaflaşacaktır. Hafif şeffaflaştıklarında kıymayı ekle. Kıyma çok hafif grileşene kadar karıştırarak pişir.
+- Kıyma çok hafif grileşene kadar karıştırarak pişir.
 
 ![Pişmiş Kıyma](../../images/recipes/pasta/kavurma_usulu_kiymali_makarna/asama-2.webp)
 *Kıymanın pişmiş hali.*
