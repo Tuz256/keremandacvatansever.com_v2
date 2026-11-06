@@ -2,7 +2,7 @@
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
 import MainLayout from "../../../layouts/MainLayout.astro";
-import ScrollToTop from "../../../components/ScrollToTop.astro";
+import ScrollToTop from "../../../components/ScrollToTopButton.astro";
 import Drawer from "../../../components/Drawer.astro";
 
 export async function getStaticPaths() {
@@ -40,7 +40,7 @@ const { Content } = await render(recipe);
 <MainLayout
   title={`${recipe.data.title} - KA.`}
   description={recipe.data.description}
-  current="Recipes"
+  current="Recipe"
 >
   <div class="Main">
     <section id="Recipe">
@@ -81,7 +81,7 @@ const { Content } = await render(recipe);
     </section>
 
     <Drawer ingredients={recipe.data.ingredients} />
-    <ScrollToTop position="Left" bottom="85px" />
+    <ScrollToTop position="Left" mobileBottom="85px" />
   </div>
 </MainLayout>
 
@@ -115,6 +115,7 @@ const { Content } = await render(recipe);
     padding: 7rem 2rem;
     margin: 0 auto;
     background: var(--color-bg-2);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
     overflow-x: hidden;
   }
 
@@ -128,6 +129,7 @@ const { Content } = await render(recipe);
     display: flex;
     gap: 1rem;
     width: 100%;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
     margin-bottom: 6rem;
   }
 
